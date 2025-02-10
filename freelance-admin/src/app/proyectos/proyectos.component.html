@@ -1,6 +1,7 @@
 <h1 class="titulos">Proyectos</h1>
 <section class="contenedor-proyectos">
-	<div class="proyectos" *ngFor="let proyecto of proyectos">
-		<p>{{proyecto.nombre_proyecto}}</p>
-	</div>
+  <div><input type="text" id="buscador" placeholder="Buscar proyecto" /></div>
+  <div class="proyectos" *ngFor="let proyecto of proyectos">
+    <p>{{ proyecto.nombre_proyecto }}</p>
+  </div>
 </section>

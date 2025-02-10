@@ -11,6 +11,16 @@
 
 }
 
+#buscador{
+	background-color: #F0F0F3;
+	padding: 15px;
+	outline: none;
+	width: 300px;
+	border: transparent solid 1px;
+	border-radius: 6px;
+	margin: 20px;
+}
+
 .proyectos {
 	padding: 20px;
 	margin: 10px;
