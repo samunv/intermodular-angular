@@ -1,0 +1,38 @@
+.contenedor-proyectos {
+	background-color: white;
+	border-radius: 12px;
+	width: 100%;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+
+}
+
+.proyectos {
+	padding: 20px;
+	margin: 10px;
+	margin-left: 20px;
+	margin-right: 20px;
+	border: #C8C8C8 1px solid;
+	border-radius: 6px;
+}
+
+.titulos {
+	font-size: 1.5em;
+	font-weight: bold;
+	margin-bottom: 10px;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.proyectos:first-child {
+	margin-top: 20px;
+}
+
+.proyectos:last-child {
+	margin-bottom: 20px;
+}

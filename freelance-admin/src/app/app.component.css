@@ -1,4 +1,9 @@
 
+.seccion-salida-router{
+	margin-top: 30px;
+	margin-bottom: 30px;
+	
+}
 
 header {
 	display: flex;
