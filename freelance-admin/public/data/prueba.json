@@ -1,0 +1,83 @@
+[
+    {
+      "nombre_proyecto": "Gestor de Tareas",
+      "autor": "Juan Pérez",
+      "fecha_inicio": "2024-01-10",
+      "fecha_fin": "2024-03-15",
+      "estado": "En progreso",
+      "tecnologias": ["Angular", "Node.js", "MongoDB"]
+    },
+    {
+      "nombre_proyecto": "E-commerce",
+      "autor": "María López",
+      "fecha_inicio": "2023-11-05",
+      "fecha_fin": "2024-02-20",
+      "estado": "Completado",
+      "tecnologias": ["React", "Express", "MySQL"]
+    },
+    {
+      "nombre_proyecto": "App de Finanzas",
+      "autor": "Carlos Ramírez",
+      "fecha_inicio": "2024-02-01",
+      "fecha_fin": "2024-06-30",
+      "estado": "En desarrollo",
+      "tecnologias": ["Vue.js", "Django", "PostgreSQL"]
+    },
+    {
+      "nombre_proyecto": "Plataforma de Cursos",
+      "autor": "Sofía Gómez",
+      "fecha_inicio": "2023-09-15",
+      "fecha_fin": "2024-04-10",
+      "estado": "En progreso",
+      "tecnologias": ["Angular", "Spring Boot", "MySQL"]
+    },
+    {
+      "nombre_proyecto": "Chat en Tiempo Real",
+      "autor": "Daniel Herrera",
+      "fecha_inicio": "2024-03-01",
+      "fecha_fin": "2024-05-20",
+      "estado": "En desarrollo",
+      "tecnologias": ["React", "Firebase", "TailwindCSS"]
+    },
+    {
+      "nombre_proyecto": "Sistema de Reservas",
+      "autor": "Ana Torres",
+      "fecha_inicio": "2023-12-01",
+      "fecha_fin": "2024-06-10",
+      "estado": "En progreso",
+      "tecnologias": ["Vue.js", "Laravel", "PostgreSQL"]
+    },
+    {
+      "nombre_proyecto": "Red Social para Fotógrafos",
+      "autor": "Miguel Ángel",
+      "fecha_inicio": "2023-10-20",
+      "fecha_fin": "2024-07-01",
+      "estado": "En desarrollo",
+      "tecnologias": ["Next.js", "NestJS", "MongoDB"]
+    },
+    {
+      "nombre_proyecto": "App de Gestión de Inventario",
+      "autor": "Laura Fernández",
+      "fecha_inicio": "2024-01-05",
+      "fecha_fin": "2024-08-30",
+      "estado": "Planificado",
+      "tecnologias": ["Svelte", "FastAPI", "SQLite"]
+    },
+    {
+      "nombre_proyecto": "Sistema de Facturación",
+      "autor": "Pedro Castillo",
+      "fecha_inicio": "2023-06-15",
+      "fecha_fin": "2023-12-01",
+      "estado": "Completado",
+      "tecnologias": ["Angular", "ASP.NET", "SQL Server"]
+    },
+    {
+      "nombre_proyecto": "Aplicación de Streaming",
+      "autor": "Gabriela Ruiz",
+      "fecha_inicio": "2024-02-20",
+      "fecha_fin": "2024-10-15",
+      "estado": "En desarrollo",
+      "tecnologias": ["Flutter", "Firebase", "GraphQL"]
+    }
+  ]
+  
