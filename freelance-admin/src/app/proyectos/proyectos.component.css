@@ -67,8 +67,8 @@
 }
 
 .columna-info{
-	margin-left: 10px;
-	margin-right: 10px;
+	margin-left: 20px;
+	margin-right: 20px;
 }
 .fotos-proyectos{
 	height: 140px;
@@ -76,5 +76,5 @@
 	object-fit: cover;
 	border-radius: 5px;
 	border: #C8C8C8 1px solid;
-	margin-right: 10px;
+	margin-right: 20px;
 }
