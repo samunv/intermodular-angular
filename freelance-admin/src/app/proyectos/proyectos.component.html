@@ -15,6 +15,32 @@
     <input type="text" id="buscador" placeholder="Buscar proyecto" />
   </div>
   <div class="proyectos" *ngFor="let proyecto of proyectos">
-    <p>{{ proyecto.nombre }} - {{ proyecto.descripcion }} -</p>
+    <img [src]="proyecto.foto" alt="" class="fotos-proyectos" />
+
+    <div class="columna-info">
+      <h3>{{ proyecto.nombre }}</h3>
+      <p class="descripcion">{{ proyecto.descripcion }}</p>
+    </div>
+
+    <div class="columna-info">
+      <h3>Estado</h3>
+      <p>{{ proyecto.estado }}</p>
+    </div>
+
+    <div class="columna-info">
+      <h3>Tecnologías</h3>
+      <!-- 
+        Se imprime el array de tecnologías como una cadena de texto en una sola línea.
+        - `proyecto.tecnologias?.join(', ')`:
+          - `.join(', ')` convierte el array en una cadena separada por comas.
+          - `?.` (optional chaining) evita errores si `tecnologias` es `undefined` o `null`.
+        - Si `tecnologias` no tiene datos, mostramos "No hay tecnologías registradas".
+      -->
+      <p>
+        {{
+          proyecto.tecnologias?.join(", ") || "No hay tecnologías registradas"
+        }}
+      </p>
+    </div>
   </div>
 </section>

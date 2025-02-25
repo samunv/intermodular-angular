@@ -19,6 +19,7 @@
 	border: transparent solid 1px;
 	border-radius: 6px;
 	margin: 20px;
+	margin-bottom: 10px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -30,6 +31,8 @@
 	border: transparent;
 	color: #8181A5;
 	outline: none;
+	font-weight: bold;
+	width: 80%;
 }
 
 
@@ -40,6 +43,10 @@
 	margin-right: 20px;
 	border: #C8C8C8 1px solid;
 	border-radius: 6px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
 }
 
 .titulos {
@@ -57,4 +64,17 @@
 
 .proyectos:last-child {
 	margin-bottom: 20px;
+}
+
+.columna-info{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.fotos-proyectos{
+	heigth: 100px;
+	width: 330px;
+	object-fit: cover;
+	border-radius: 5px;
+	border: #C8C8C8 1px solid;
+	margin-right: 10px;
 }

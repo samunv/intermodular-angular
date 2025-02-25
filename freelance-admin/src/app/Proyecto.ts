@@ -1,9 +1,8 @@
 export interface Proyecto {
-  id?: string; // ID opcional generado por Firebase
   nombre_proyecto: string; // Nombre del proyecto (obligatorio)
-  autor: string; // Nombre del autor
-  fecha_inicio: Date; // Tipo Date en lugar de string
-  fecha_fin?: Date; // Fecha opcional, también como Date
+  descripcion: string; // Descripción del proyecto
   estado: 'Planificado' | 'En desarrollo' | 'En progreso' | 'Completado'; // Estado con valores limitados
   tecnologias: string[]; // Lista de tecnologías utilizadas
+  foto: string; // SRC de una foto del proyecto
+  id_factura: string; // ID generado de la factura
 }
