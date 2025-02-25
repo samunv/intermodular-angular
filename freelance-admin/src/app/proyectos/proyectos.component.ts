@@ -9,15 +9,16 @@ import { Proyecto } from '../Proyecto';
   templateUrl: './proyectos.component.html',
   styleUrl: './proyectos.component.css',
 })
-export class ProyectosComponent implements OnInit {
-  proyectos: Proyecto[] = [];
+export class ProyectosComponent{
+  proyectos: any;
 
   constructor(private servicio: ProyectosServicioService) {}
 
-  ngOnInit(): void {
-    this.servicio.obtenerTodos().subscribe((datos: Proyecto[]) => {
-      this.proyectos = datos;
-      console.log(this.proyectos);
-    });
+  ngOnInit() {
+    this.getProyectos();
+  }
+
+  async getProyectos() {
+    this.proyectos = await this.servicio.getProyectos();
   }
 }

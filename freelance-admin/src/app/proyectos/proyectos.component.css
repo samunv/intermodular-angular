@@ -11,7 +11,7 @@
 
 }
 
-#buscador{
+.contenedor-buscador {
 	background-color: #F0F0F3;
 	padding: 15px;
 	outline: none;
@@ -19,7 +19,19 @@
 	border: transparent solid 1px;
 	border-radius: 6px;
 	margin: 20px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
+
+#buscador {
+	margin-left: 10px;
+	background-color: transparent;
+	border: transparent;
+	color: #8181A5;
+	outline: none;
+}
+
 
 .proyectos {
 	padding: 20px;
