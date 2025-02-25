@@ -66,15 +66,35 @@
 	margin-bottom: 20px;
 }
 
-.columna-info{
+.columna-info {
 	margin-left: 20px;
 	margin-right: 20px;
 }
-.fotos-proyectos{
+
+.fotos-proyectos {
 	height: 140px;
 	width: 250px;
 	object-fit: cover;
 	border-radius: 5px;
 	border: #C8C8C8 1px solid;
 	margin-right: 20px;
+}
+
+.contenedor-buscador-crear {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.contenedor-crear{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	background-color: #F0F0F3;
+	padding: 15px;
+	border-radius: 6px;
+	color: #8181A5;
+	margin: 20px;
+	margin-left: 10px;
+	margin-bottom: 10px;
 }
