@@ -1,42 +1,47 @@
 <div class="container mt-4">
-    <h2>Crear Nuevo Proyecto</h2>
-  
-    <form [formGroup]="proyectoForm" (ngSubmit)="crearProyecto()" class="formulario">
-      <!-- Nombre del Proyecto -->
-      <div class="form-group">
-        <label>Nombre del Proyecto</label>
-        <input formControlName="nombre" type="text" class="form-control" required />
-      </div>
-  
-      <!-- Descripción -->
-      <div class="form-group">
-        <label>Descripción</label>
-        <textarea formControlName="descripcion" class="form-control"></textarea>
-      </div>
-  
-      <!-- Estado -->
-      <div class="form-group">
-        <label>Estado</label>
-        <select formControlName="estado" class="form-control">
-          <option *ngFor="let estado of estados" [value]="estado">{{ estado }}</option>
-        </select>
-      </div>
-  
-      <!-- Tecnologías -->
-      <div class="form-group">
-        <label>Tecnologías (separadas por coma)</label>
-        <input formControlName="tecnologias" type="text" class="form-control" />
-      </div>
-  
-      <!-- Foto -->
-      <div class="form-group">
-        <label>URL de la Foto</label>
-        <input formControlName="foto" type="text" class="form-control" />
-      </div>
-  
-      <button type="submit" class="btn btn-success mt-3" [disabled]="proyectoForm.invalid">
-        Crear Proyecto
-      </button>
-    </form>
-  </div>
-  
+  <h2>Crear Nuevo Proyecto</h2>
+
+  <form [formGroup]="proyectoForm" (ngSubmit)="crearProyecto()" class="formulario">
+    <!-- Nombre del Proyecto -->
+    <div class="form-group">
+      <label>Nombre del Proyecto</label>
+      <input formControlName="nombre" type="text" class="form-control" required />
+    </div>
+
+    <!-- Descripción -->
+    <div class="form-group">
+      <label>Descripción</label>
+      <textarea formControlName="descripcion" class="form-control"></textarea>
+    </div>
+
+    <!-- Estado -->
+    <div class="form-group">
+      <label>Estado</label>
+      <select formControlName="estado" class="form-control">
+        <option *ngFor="let estado of estados" [value]="estado">{{ estado }}</option>
+      </select>
+    </div>
+
+    <!-- Tecnologías -->
+    <div class="form-group">
+      <label>Tecnologías</label>
+      <select formControlName="tecnologias" class="form-control" multiple>
+        <option *ngFor="let tecnologia of tecnologias" [value]="tecnologia.nombre">
+          <img [src]="tecnologia.icono" alt="{{ tecnologia.nombre }}" class="icono-tecnologia">
+          {{ tecnologia.nombre }}
+        </option>
+      </select>
+      <small class="help-text">Presiona Ctrl (Windows)  múltiples tecnologías.</small>
+    </div>
+
+    <!-- Foto -->
+    <div class="form-group">
+      <label>URL de la Foto</label>
+      <input formControlName="foto" type="text" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3" [disabled]="proyectoForm.invalid">
+      Crear Proyecto
+    </button>
+  </form>
+</div>
