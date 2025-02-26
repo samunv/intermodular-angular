@@ -5,7 +5,7 @@
       <!-- Nombre del Proyecto -->
       <div class="form-group">
         <label>Nombre del Proyecto</label>
-        <input formControlName="nombre_proyecto" type="text" class="form-control" required />
+        <input formControlName="nombre" type="text" class="form-control" required />
       </div>
   
       <!-- Descripción -->
@@ -32,18 +32,6 @@
       <div class="form-group">
         <label>URL de la Foto</label>
         <input formControlName="foto" type="text" class="form-control" />
-      </div>
-  
-      <!-- ID Factura -->
-      <div class="form-group">
-        <label>ID de Factura</label>
-        <input formControlName="id_factura" type="text" class="form-control" />
-      </div>
-  
-      <!-- Presupuesto -->
-      <div class="form-group">
-        <label>Presupuesto</label>
-        <input formControlName="presupuesto" type="number" class="form-control" />
       </div>
   
       <button type="submit" class="btn btn-success mt-3" [disabled]="proyectoForm.invalid">

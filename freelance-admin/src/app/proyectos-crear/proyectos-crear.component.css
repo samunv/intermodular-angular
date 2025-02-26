@@ -1,0 +1,88 @@
+/* Contenedor general */
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Título */
+  h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para los labels */
+  .form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #555;
+    margin: 10px;
+  }
+  
+  /* Estilos para inputs y select */
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.2);
+  }
+  
+  /* Estilos específicos para select */
+  select.form-control {
+    cursor: pointer;
+    background-color: #f8f9fa;
+  }
+  
+  /* Botón de envío */
+  .btn-success {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    margin: 10px;
+
+  }
+  
+  .btn-success:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Ajuste para los campos de texto más grandes */
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  /* Ajuste responsivo */
+  @media (max-width: 768px) {
+    .container {
+      max-width: 90%;
+      padding: 20px;
+    }
+  
+    h2 {
+      font-size: 22px;
+    }
+  }
+  
