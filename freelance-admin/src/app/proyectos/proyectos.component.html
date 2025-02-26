@@ -47,7 +47,14 @@
 
       <div class="columna-info estado">
         <h3>Estado</h3>
-        <p [ngClass]="{'estado-finalizado': proyecto.estado === 'Finalizado', 'estado-en-curso': proyecto.estado === 'En curso'}">{{ proyecto.estado }}</p>
+        <p
+          [ngClass]="{
+            'estado-finalizado': proyecto.estado === 'Finalizado',
+            'estado-en-curso': proyecto.estado === 'En curso'
+          }"
+        >
+          {{ proyecto.estado }}
+        </p>
       </div>
 
       <div class="columna-info tecnologias">
@@ -59,14 +66,21 @@
           - `?.` (optional chaining) evita errores si `tecnologias` es `undefined` o `null`.
         - Si `tecnologias` no tiene datos, mostramos "No hay tecnologías registradas".
       -->
-        <p>
-          {{
-            proyecto.tecnologias?.join(", ") || "No hay tecnologías registradas"
-          }}
-        </p>
+
+      <div class="conjunto-tecnologias">
+        <span *ngFor="let tec of tecnologias">
+          <span
+            *ngIf="proyecto.tecnologias.includes(tec.nombre)"
+            class="contenedor-tecnologia-icono"
+          >
+            <img [src]="tec.icono" alt="{{ tec.nombre }}" width="20" height="20" style="object-fit: contain;"/>
+            <span>{{ tec.nombre }}</span>
+          </span>
+        </span>
+      </div>
+        
       </div>
     </div>
-
     <div class="columna-info botones">
       <button>Editar</button>
       <button>Eliminar</button>
