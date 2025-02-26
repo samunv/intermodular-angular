@@ -25,9 +25,8 @@
     <!-- Tecnologías -->
     <div class="form-group">
       <label>Tecnologías</label>
-      <select formControlName="tecnologias" class="form-control" multiple>
+      <select formControlName="tecnologias" class="form-control tecnologias" multiple >
         <option *ngFor="let tecnologia of tecnologias" [value]="tecnologia.nombre">
-          <img [src]="tecnologia.icono" alt="{{ tecnologia.nombre }}" class="icono-tecnologia">
           {{ tecnologia.nombre }}
         </option>
       </select>

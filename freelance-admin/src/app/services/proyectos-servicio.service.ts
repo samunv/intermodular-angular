@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Proyecto } from './Proyecto';
+import { Proyecto } from '../Proyecto';
 import { Observable } from 'rxjs';
 import {
   addDoc,

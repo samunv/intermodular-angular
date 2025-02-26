@@ -1,6 +1,6 @@
 import { NgClass, NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ProyectosServicioService } from '../proyectos-servicio.service';
+import { ProyectosServicioService } from '../services/proyectos-servicio.service';
 import { Proyecto } from '../Proyecto';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
