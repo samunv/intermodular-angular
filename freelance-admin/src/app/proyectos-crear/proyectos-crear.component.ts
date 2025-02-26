@@ -17,7 +17,7 @@ export class ProyectosCrearComponent {
 
   constructor(private fb: FormBuilder, private firestore: Firestore, private router: Router) {
     this.proyectoForm = this.fb.group({
-      nombre_proyecto: ['', Validators.required],
+      nombre: ['', Validators.required],
       descripcion: [''],
       estado: ['', Validators.required],
       tecnologias: [''],

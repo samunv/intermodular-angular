@@ -1,6 +1,5 @@
-/* Contenedor general */
 .container {
-    max-width: 600px;
+    width: 60%;
     margin: 40px auto;
     padding: 30px;
     background-color: #ffffff;
@@ -9,7 +8,13 @@
     transition: all 0.3s ease-in-out;
   }
   
-  /* Título */
+  .formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
   h2 {
     text-align: center;
     font-size: 24px;
@@ -18,16 +23,20 @@
     margin-bottom: 20px;
   }
   
-  /* Estilos para los labels */
   .form-group label {
     display: block;
     font-weight: 500;
     margin-bottom: 6px;
     color: #555;
-    margin: 10px;
+    margin-left: 10px;
+    
   }
   
-  /* Estilos para inputs y select */
+  .form-group {
+    width: 100%;
+    margin: 10px auto; 
+  }
+  
   .form-control {
     width: 100%;
     padding: 10px;
@@ -35,50 +44,51 @@
     border-radius: 8px;
     font-size: 16px;
     transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
   }
   
   .form-control:focus {
-    border-color: #007bff;
+    border-color: #5E81F4;
     box-shadow: 0 0 6px rgba(0, 123, 255, 0.2);
   }
   
-  /* Estilos específicos para select */
+  textarea.form-control {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
   select.form-control {
     cursor: pointer;
     background-color: #f8f9fa;
   }
   
-  /* Botón de envío */
   .btn-success {
     width: 100%;
+    max-width: 500px;
     padding: 12px;
     font-size: 18px;
-    font-weight: 500;
-    background-color: #007bff;
+    font-weight: bold;
+    background-color: #5E81F4;
     border: none;
     color: white;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
-    margin: 10px;
-
+    margin-top: 15px;
   }
   
   .btn-success:hover {
-    background-color: #0056b3;
+    background-color: #4a6edb;
   }
   
-  /* Ajuste para los campos de texto más grandes */
-  textarea {
-    resize: vertical;
-    min-height: 80px;
-  }
-  
-  /* Ajuste responsivo */
   @media (max-width: 768px) {
     .container {
-      max-width: 90%;
+      width: 90%;
       padding: 20px;
+    }
+  
+    .form-group {
+      max-width: 100%;
     }
   
     h2 {
