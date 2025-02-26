@@ -33,6 +33,7 @@
 	outline: none;
 	font-weight: bold;
 	width: 80%;
+	font-size: 14px;
 }
 
 
@@ -46,7 +47,7 @@
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	justify-content: flex-start;
+	justify-content: space-between;
 }
 
 .titulos {
@@ -83,10 +84,10 @@
 .contenedor-buscador-crear {
 	display: flex;
 	flex-direction: row;
-	align-items: center;
+	align-items: stretch
 }
 
-.contenedor-crear{
+.contenedor-crear {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -95,6 +96,50 @@
 	border-radius: 6px;
 	color: #8181A5;
 	margin: 20px;
-	margin-left: 10px;
+	margin-left: 0px;
 	margin-bottom: 10px;
+	font-weight: bold;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.contenedor-crear svg{
+	margin-right: 5px;
+}
+
+
+.contenedor-crear:hover{
+	background-color: #dcdcdf;
+}
+
+.columna-info.botones {
+    display: flex;
+    flex-direction: column;
+	margin-right: 0px;
+}
+
+.columna-info.botones button {
+    margin: 10px;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+	margin-right: 0px;
+	cursor: pointer;
+	background-color: #F0F0F3;
+	color: #8181A5;
+	font-weight: bold;
+
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+	justify-content: center;
+}
+
+.columna-info.botones button:hover{
+	background-color: #dcdcdf;
+}
+
+.columna-info.botones button:last-child{
+	background-color: #5E81F4;
+	color: white;
 }
