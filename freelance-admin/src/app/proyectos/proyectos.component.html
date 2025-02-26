@@ -16,7 +16,11 @@
       <input type="text" id="buscador" placeholder="Buscar proyecto" />
     </div>
 
-    <a routerLink="/proyectos-crear" routerLinkActive="active" class="contenedor-crear">
+    <a
+      routerLink="/proyectos-crear"
+      routerLinkActive="active"
+      class="contenedor-crear"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         height="24px"
@@ -30,36 +34,37 @@
       </svg>
       Añadir Proyecto
     </a>
-    
   </div>
 
   <div class="proyectos" *ngFor="let proyecto of proyectos">
-    <img [src]="proyecto.foto" alt="" class="fotos-proyectos" />
+    <div class="contenedor-izquierda">
+      <img [src]="proyecto.foto" alt="" class="fotos-proyectos" />
 
-    <div class="columna-info">
-      <h3>{{ proyecto.nombre }}</h3>
-      <p class="descripcion">{{ proyecto.descripcion }}</p>
-    </div>
+      <div class="columna-info nombre-descripcion">
+        <h3>{{ proyecto.nombre }}</h3>
+        <p class="descripcion">{{ proyecto.descripcion }}</p>
+      </div>
 
-    <div class="columna-info">
-      <h3>Estado</h3>
-      <p>{{ proyecto.estado }}</p>
-    </div>
+      <div class="columna-info estado">
+        <h3>Estado</h3>
+        <p [ngClass]="{'estado-finalizado': proyecto.estado === 'Finalizado', 'estado-en-curso': proyecto.estado === 'En curso'}">{{ proyecto.estado }}</p>
+      </div>
 
-    <div class="columna-info">
-      <h3>Tecnologías</h3>
-      <!-- 
+      <div class="columna-info tecnologias">
+        <h3>Tecnologías</h3>
+        <!-- 
         Se imprime el array de tecnologías como una cadena de texto en una sola línea.
         - `proyecto.tecnologias?.join(', ')`:
           - `.join(', ')` convierte el array en una cadena separada por comas.
           - `?.` (optional chaining) evita errores si `tecnologias` es `undefined` o `null`.
         - Si `tecnologias` no tiene datos, mostramos "No hay tecnologías registradas".
       -->
-      <p>
-        {{
-          proyecto.tecnologias?.join(", ") || "No hay tecnologías registradas"
-        }}
-      </p>
+        <p>
+          {{
+            proyecto.tecnologias?.join(", ") || "No hay tecnologías registradas"
+          }}
+        </p>
+      </div>
     </div>
 
     <div class="columna-info botones">

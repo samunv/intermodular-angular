@@ -104,26 +104,26 @@
 	text-decoration: none;
 }
 
-.contenedor-crear svg{
+.contenedor-crear svg {
 	margin-right: 5px;
 }
 
 
-.contenedor-crear:hover{
+.contenedor-crear:hover {
 	background-color: #dcdcdf;
 }
 
 .columna-info.botones {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 	margin-right: 0px;
 }
 
 .columna-info.botones button {
-    margin: 10px;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
+	margin: 10px;
+	border: none;
+	padding: 10px;
+	border-radius: 5px;
 	margin-right: 0px;
 	cursor: pointer;
 	background-color: #F0F0F3;
@@ -136,11 +136,51 @@
 	justify-content: center;
 }
 
-.columna-info.botones button:hover{
+.columna-info.botones button:hover {
 	background-color: #dcdcdf;
 }
 
-.columna-info.botones button:last-child{
+.columna-info.botones button:last-child {
 	background-color: #5E81F4;
 	color: white;
+}
+
+.contenedor-izquierda {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.columna-info.nombre-descripcion {
+	width: 400px;
+}
+
+.columna-info.estado {
+	width: 100px;
+}
+
+.columna-info.tecnologias {
+	width: 200px;
+}
+
+.estado-finalizado {
+	background-color: rgb(236, 255, 236);
+	color: rgb(2, 215, 2);
+	padding: 3px;
+	text-align: center;
+	border-radius: 5px;
+	margin-top: 5px;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.estado-en-curso {
+	background-color: rgb(255, 243, 221);
+	color: orange;
+	padding: 3px;
+	text-align: center;
+	border-radius: 5px;
+	margin-top: 5px;
+	font-weight: bold;
+	font-size: 14px;
 }

@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+import { NgClass, NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ProyectosServicioService } from '../proyectos-servicio.service';
 import { Proyecto } from '../Proyecto';
@@ -6,7 +6,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-proyectos',
-  imports: [NgFor,RouterOutlet, RouterLink, ProyectosComponent],
+  imports: [NgFor,RouterOutlet, RouterLink, ProyectosComponent, NgClass],
   templateUrl: './proyectos.component.html',
   styleUrl: './proyectos.component.css',
 })
