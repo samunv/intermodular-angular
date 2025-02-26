@@ -1,5 +1,5 @@
 export interface Proyecto {
-  nombre_proyecto: string; // Nombre del proyecto (obligatorio)
+  nombre: string; // Nombre del proyecto (obligatorio)
   descripcion: string; // Descripción del proyecto
   estado: string; // Estado con valores limitados
   tecnologias: string[]; // Lista de tecnologías utilizadas
