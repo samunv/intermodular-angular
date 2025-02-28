@@ -4,6 +4,7 @@ export interface Proyecto {
   estado: string; // Estado con valores limitados
   tecnologias: string[]; // Lista de tecnologías utilizadas
   foto: string; // SRC de una foto del proyecto
-  id_factura: string; // ID generado de la factura
+  id_factura?: string; // ID generado de la factura (ahora opcional)
   presupuesto: number; // Presupuesto del proyecto
+  codigo: string; // Código único del proyecto 
 }
