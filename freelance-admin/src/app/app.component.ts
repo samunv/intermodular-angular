@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { ProyectosComponent } from './proyectos/proyectos.component';
 import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
 
 
 @Component({
 	selector: 'app-root',
-	imports: [RouterOutlet, RouterLink, ProyectosComponent,FormsModule],
+	imports: [RouterOutlet, RouterLink, ProyectosComponent,FormsModule,NgIf],
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.css',
 })
