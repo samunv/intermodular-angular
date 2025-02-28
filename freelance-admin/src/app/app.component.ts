@@ -3,6 +3,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { ProyectosComponent } from './proyectos/proyectos.component';
 import { FormsModule } from '@angular/forms';
 
+
 @Component({
 	selector: 'app-root',
 	imports: [RouterOutlet, RouterLink, ProyectosComponent,FormsModule],

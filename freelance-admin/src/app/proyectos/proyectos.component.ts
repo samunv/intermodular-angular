@@ -5,6 +5,7 @@ import { Proyecto } from '../Proyecto';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { TecnologiasService } from '../services/tecnologias.service';
 
+
 @Component({
   selector: 'app-proyectos',
   imports: [NgFor, RouterOutlet, RouterLink, ProyectosComponent, NgClass, NgIf],

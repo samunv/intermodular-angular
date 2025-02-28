@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule],
+  imports: [FormsModule,],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
@@ -24,15 +24,7 @@ export class LoginComponent {
       .catch(error => alert('Error: ' + error.message));
   }
 
-  register() {
-    this.loginService.register(this.email, this.password)
-      .then(() => {
-        alert('Usuario registrado correctamente');
-        this.router.navigate(['/proyectos']); 
-      })
-      .catch(error => alert('Error: ' + error.message));
-  }
-
+  
   loginWithGoogle() {
     this.loginService.loginWithGoogle()
       .then(() => {
