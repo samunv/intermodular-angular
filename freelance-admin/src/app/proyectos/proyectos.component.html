@@ -84,7 +84,10 @@
     <div class="columna-info botones">
       <button>Editar</button>
       <button>Eliminar</button>
-      <button>Ver Facturas</button>
+      <button [routerLink]="['/factura-vista', proyecto.codigo]">
+        Ver Facturas
+      </button>
     </div>
+    
   </div>
 </section>

@@ -6,5 +6,5 @@ export interface Proyecto {
   foto: string; // SRC de una foto del proyecto
   id_factura?: string; // ID generado de la factura (ahora opcional)
   presupuesto: number; // Presupuesto del proyecto
-  codigo: string; // Código único del proyecto (ABC123)
+  codigo: string; // Código único del proyecto 
 }

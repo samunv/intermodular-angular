@@ -8,5 +8,5 @@ export const routes: Routes = [
   { path: '', component: ProyectosComponent },
   { path: 'perfil', component: PerfilComponent },
   { path: 'proyectos-crear', component: ProyectosCrearComponent },
-  { path: 'factura-vista', component: FacturaVistaComponent } // Ajuste en la ruta
+  { path: 'factura-vista/:codigo', component: FacturaVistaComponent } //se añade ":codigo" como parámetro dinámico
 ];
