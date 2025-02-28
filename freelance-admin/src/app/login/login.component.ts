@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 export class LoginComponent {
   email: string = '';
   password: string = '';
+  logo = "../img/Freelance-admin-logo.png";
+
 
   constructor(private loginService: LoginService, private router: Router) {}
 
