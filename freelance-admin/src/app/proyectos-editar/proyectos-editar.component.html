@@ -1,0 +1,51 @@
+<h1 class="titulos">Editar Proyecto</h1>
+
+<section class="contenedor-proyectos">
+  <div class="contenedor-buscador-crear">
+    <div class="contenedor-buscador">
+      <input type="text" id="buscador" placeholder="Buscar..." disabled />
+    </div>
+  </div>
+
+  <div class="proyectos">
+    <div class="contenedor-izquierda">
+      <div class="columna-info nombre-descripcion">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" [(ngModel)]="proyecto.nombre" required />
+      </div>
+
+      <div class="columna-info descripcion">
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" [(ngModel)]="proyecto.descripcion" required></textarea>
+      </div>
+
+      <div class="columna-info estado">
+        <label for="estado">Estado:</label>
+        <select id="estado" [(ngModel)]="proyecto.estado">
+          <option value="En curso">En curso</option>
+          <option value="Finalizado">Finalizado</option>
+        </select>
+      </div>
+
+      <!-- ✅ Selección de tecnologías -->
+      <div class="columna-info tecnologias">
+        <label>Tecnologías:</label>
+        <div class="lista-tecnologias">
+          <label *ngFor="let tecnologia of tecnologiasDisponibles">
+            <input
+              type="checkbox"
+              [checked]="proyecto.tecnologias.includes(tecnologia.nombre)"
+              (change)="toggleTecnologia(tecnologia.nombre)"
+            />
+            {{ tecnologia.nombre }}
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="columna-info botones">
+      <button class="btn-actualizar" (click)="actualizarProyecto()">Actualizar</button>
+      <button class="btn-cancelar" (click)="cancelarEdicion()">Cancelar</button>
+    </div>
+  </div>
+</section>

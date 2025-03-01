@@ -59,35 +59,35 @@
 
       <div class="columna-info tecnologias">
         <h3>Tecnologías</h3>
-        <!-- 
-        Se imprime el array de tecnologías como una cadena de texto en una sola línea.
-        - `proyecto.tecnologias?.join(', ')`:
-          - `.join(', ')` convierte el array en una cadena separada por comas.
-          - `?.` (optional chaining) evita errores si `tecnologias` es `undefined` o `null`.
-        - Si `tecnologias` no tiene datos, mostramos "No hay tecnologías registradas".
-      -->
 
-      <div class="conjunto-tecnologias">
-        <span *ngFor="let tec of tecnologias">
-          <span
-            *ngIf="proyecto.tecnologias.includes(tec.nombre)"
-            class="contenedor-tecnologia-icono"
-          >
-            <img [src]="tec.icono" alt="{{ tec.nombre }}" width="20" height="20" style="object-fit: contain;"/>
-            <span>{{ tec.nombre }}</span>
+        <div class="conjunto-tecnologias">
+          <span *ngFor="let tec of tecnologias">
+            <span
+              *ngIf="proyecto.tecnologias.includes(tec.nombre)"
+              class="contenedor-tecnologia-icono"
+            >
+              <img
+                [src]="tec.icono"
+                alt="{{ tec.nombre }}"
+                width="20"
+                height="20"
+                style="object-fit: contain;"
+              />
+              <span>{{ tec.nombre }}</span>
+            </span>
           </span>
-        </span>
-      </div>
-        
+        </div>
       </div>
     </div>
+
+    <!-- 🟢 Botones de Editar, Eliminar y Ver Facturas -->
     <div class="columna-info botones">
-      <button>Editar</button>
-      <button>Eliminar</button>
+      <button (click)="editarProyecto(proyecto.id)">✏️ Editar</button>
+      <button (click)="eliminarProyecto(proyecto.id)">🗑 Eliminar</button>
       <button [routerLink]="['/factura-vista', proyecto.codigo]">
         Ver Facturas
       </button>
     </div>
-    
+
   </div>
 </section>

@@ -1,21 +1,20 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { ProyectosComponent } from './proyectos/proyectos.component';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 
-
 @Component({
-	selector: 'app-root',
-	imports: [RouterOutlet, RouterLink, ProyectosComponent,FormsModule,NgIf],
-	templateUrl: './app.component.html',
-	styleUrl: './app.component.css',
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, RouterLink, FormsModule, NgIf], // ❌ Eliminado ProyectosComponent
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
-	title = 'Freelance Admin';
-	logo = "/img/Freelance-admin-logo.png";
+  title = 'Freelance Admin';
+  logo = "/img/Freelance-admin-logo.png";
 
-	isLoginPage = false;
+  isLoginPage = false;
 
   constructor(private router: Router) {
     this.router.events.subscribe(() => {
@@ -23,6 +22,3 @@ export class AppComponent {
     });
   }
 }
-
-
-

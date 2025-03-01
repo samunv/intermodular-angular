@@ -1,17 +1,18 @@
-import { NgClass, NgFor, NgIf, CurrencyPipe } from '@angular/common';
+import { CommonModule, NgClass, NgFor, NgIf, CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FacturaServicioService } from '../services/factura-servicio.service';
 import { Factura } from '../Factura';
-import { RouterLink, ActivatedRoute } from '@angular/router';
+import { RouterModule, RouterLink, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-factura-vista',
-  imports: [NgFor, NgIf, NgClass, CurrencyPipe, RouterLink],
+  standalone: true,
+  imports: [CommonModule, RouterModule, NgFor, NgIf, NgClass, CurrencyPipe, RouterLink],
   templateUrl: './factura-vista.component.html',
   styleUrl: './factura-vista.component.css',
 })
 export class FacturaVistaComponent implements OnInit {
-  codigoProyecto!: string; // Código del proyecto obtenido de la URL
+  codigoProyecto: string = ''; // Código del proyecto obtenido de la URL
   facturas: Factura[] = []; // Lista de todas las facturas
   facturasFiltradas: Factura[] = []; // Lista de facturas filtradas
 

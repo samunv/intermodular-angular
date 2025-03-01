@@ -1,0 +1,120 @@
+.titulos {
+    text-align: center;
+    font-size: 24px;
+    color: #4a4a4a;
+    margin-bottom: 20px;
+  }
+  
+  .contenedor-proyectos {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contenedor-buscador {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  #buscador {
+    margin-left: 10px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    width: 100%;
+  }
+  
+  .proyectos {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .columna-info {
+    margin-bottom: 15px;
+  }
+  
+  .columna-info label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  textarea {
+    resize: none;
+    height: 80px;
+  }
+  
+  .columna-info.botones {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .btn-actualizar {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-actualizar:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-cancelar {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-cancelar:hover {
+    background-color: #b52a37;
+  }
+  
+  .lista-tecnologias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .lista-tecnologias label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #f8f8f8;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .lista-tecnologias input[type="checkbox"] {
+    accent-color: #007bff;
+  }
+  
