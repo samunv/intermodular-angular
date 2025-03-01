@@ -1,14 +1,28 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { ProyectosComponent } from './proyectos/proyectos.component';
+import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
+
 
 @Component({
 	selector: 'app-root',
-	imports: [RouterOutlet, RouterLink, ProyectosComponent],
+	imports: [RouterOutlet, RouterLink, ProyectosComponent,FormsModule,NgIf],
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.css',
 })
 export class AppComponent {
 	title = 'Freelance Admin';
 	logo = "/img/Freelance-admin-logo.png";
+
+	isLoginPage = false;
+
+  constructor(private router: Router) {
+    this.router.events.subscribe(() => {
+      this.isLoginPage = this.router.url === '/login';
+    });
+  }
 }
+
+
+
