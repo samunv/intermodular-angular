@@ -30,13 +30,19 @@
           {{ tecnologia.nombre }}
         </option>
       </select>
-      <small class="help-text">Presiona Ctrl (Windows)  múltiples tecnologías.</small>
+      <small class="help-text">Presiona Ctrl (Windows) para seleccionar múltiples tecnologías.</small>
     </div>
 
-    <!-- Foto -->
+    <!-- Subir Imagen -->
     <div class="form-group">
-      <label>URL de la Foto</label>
-      <input formControlName="foto" type="text" class="form-control" />
+      <label>Subir Imagen</label>
+      <input type="file" (change)="onFileSelected($event)" class="form-control" accept="image/*" />
+    </div>
+
+    <!-- Vista Previa de la Imagen -->
+    <div *ngIf="imagenBase64" class="preview-container">
+      <label>Vista Previa:</label>
+      <img [src]="imagenBase64" alt="Vista previa" class="img-preview"/>
     </div>
 
     <button type="submit" class="btn btn-success mt-3" [disabled]="proyectoForm.invalid">

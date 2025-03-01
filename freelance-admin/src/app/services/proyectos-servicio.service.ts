@@ -11,7 +11,7 @@ export class ProyectosServicioService {
     return Math.random().toString(36).substr(2, 9);
   }
 
-  /** 🟢 Crear un nuevo proyecto en Firestore */
+  /** Crear un nuevo proyecto en Firestore */
   async createProyecto(proyecto: any) {
     try {
       const nuevoProyecto = {
@@ -19,7 +19,6 @@ export class ProyectosServicioService {
         codigo: this.generarCodigoProyecto()
       };
       const docRef = await addDoc(collection(this.firestore, 'proyectos'), nuevoProyecto);
-      console.log('✅ Proyecto creado con ID:', docRef.id);
       return docRef;
     } catch (error) {
       console.error('❌ Error al crear el proyecto:', error);
