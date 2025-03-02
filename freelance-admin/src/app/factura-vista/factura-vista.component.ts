@@ -32,6 +32,7 @@ export class FacturaVistaComponent implements OnInit {
   facturasFiltradas: Factura[] = []; // Lista de facturas filtradas
   proyecto: any;
   nombreproyecto: String = '';
+  presupuestoFinal: number = 0;
 
   constructor(
     private facturaServicio: FacturaServicioService,
@@ -55,14 +56,19 @@ export class FacturaVistaComponent implements OnInit {
    */
   async getFacturas() {
     try {
-      this.facturas = await this.facturaServicio.getFacturas(
-        this.codigoProyecto
-      );
-      this.facturasFiltradas = [...this.facturas]; // Se inicia con todas las facturas
+      const facturasFirebase = await this.facturaServicio.getFacturas(this.codigoProyecto);
+      this.facturas = facturasFirebase.map(factura => ({
+        ...factura,
+        total: Number(factura.total) || 0
+      }));
+      this.facturasFiltradas = [...this.facturas]; // Solo para mostrar
+      this.calcularTotalFacturas(); // ✅ Calcula el total después de cargar todo
     } catch (error) {
       console.error('❌ Error al obtener las facturas:', error);
     }
   }
+  
+  
 
   /**
    * Filtra las facturas según la búsqueda del usuario
@@ -75,10 +81,23 @@ export class FacturaVistaComponent implements OnInit {
         factura.numeroFactura.toLowerCase().includes(filtro) ||
         factura.cliente.toLowerCase().includes(filtro)
     );
+    this.calcularTotalFacturas();
   }
 
   async obtenerNombreProyecto(codigo: string) {
     this.proyecto = await this.proyectosServicio.getProyectoByCodigo(codigo);
-    return (this.nombreproyecto = this.proyecto.nombre);
+    this.nombreproyecto = this.proyecto.nombre;
   }
+
+  calcularTotalFacturas() {
+    this.presupuestoFinal = this.facturasFiltradas.reduce(
+      (acumulador, factura) => acumulador + (factura.total ?? 0),
+      0
+    );
+  }
+  
+  
+  
+  
+  
 }

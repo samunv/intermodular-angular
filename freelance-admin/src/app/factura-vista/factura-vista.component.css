@@ -14,59 +14,25 @@
 .titulos {
   font-size: 1.5em;
   font-weight: bold;
-  margin-bottom: 10px;
   text-align: left;
+  margin: 0%;
+
+}
+
+.a-titulo {
+  margin-bottom: 10px;
+  color: black;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
   width: 90%;
   margin-left: auto;
   margin-right: auto;
-
 }
 
-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  height: 50px;
-  background-color: white;
+.a-titulo:hover {
+  text-decoration: underline;
 }
-
-.img-logo {
-  height: 50px;
-  width: 170px;
-}
-
-nav ul {
-  display: flex;
-  flex-direction: row;
-}
-
-nav ul li {
-  list-style: none;
-  margin: 10px;
-}
-
-.enlaces {
-  text-decoration: none;
-  color: #8181A5;
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.enlaces:hover {
-  color: #5E81F4;
-}
-
-
-
-.factura-content {
-  padding: 20px;
-  border-radius: 8px;
-}
-
 
 
 
@@ -100,14 +66,35 @@ nav ul li {
 
 }
 
-.factura{
+.factura {
   padding: 20px;
-	margin-bottom: 20px;
-	border: #C8C8C8 1px solid;
-	border-radius: 5px;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
+  margin-bottom: 20px;
+  border: #C8C8C8 1px solid;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 
+}
+
+
+.presupuesto {
+  background-color: white;
+  border-radius: 12px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  padding: 20px;
+  height: autos;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.presupuesto h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0px;
 }
