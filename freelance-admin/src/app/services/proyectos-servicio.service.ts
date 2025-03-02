@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, addDoc, collection, getDocs, query, doc, deleteDoc, updateDoc, getDoc } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, getDocs, query, doc, deleteDoc, updateDoc, getDoc, where } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -52,6 +52,26 @@ export class ProyectosServicioService {
       throw error;
     }
   }
+
+
+  async getProyectoByCodigo(codigo: string) {
+    try {
+      const proyectosRef = collection(this.firestore, 'proyectos');
+      const q = query(proyectosRef, where('codigo', '==', codigo));
+      const querySnapshot = await getDocs(q);
+  
+      if (!querySnapshot.empty) {
+        const proyectoDoc = querySnapshot.docs[0];
+        return { id: proyectoDoc.id, ...proyectoDoc.data() };
+      } else {
+        throw new Error('El proyecto no existe');
+      }
+    } catch (error) {
+      console.error('❌ Error al obtener el proyecto por código:', error);
+      throw error;
+    }
+  }
+  
 
   /** 🟠 Editar un proyecto en Firestore */
   async editarProyecto(id: string, data: any) {

@@ -1,13 +1,28 @@
-import { CommonModule, NgClass, NgFor, NgIf, CurrencyPipe } from '@angular/common';
+import {
+  CommonModule,
+  NgClass,
+  NgFor,
+  NgIf,
+  CurrencyPipe,
+} from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FacturaServicioService } from '../services/factura-servicio.service';
 import { Factura } from '../Factura';
 import { RouterModule, RouterLink, ActivatedRoute } from '@angular/router';
+import { ProyectosServicioService } from '../services/proyectos-servicio.service';
 
 @Component({
   selector: 'app-factura-vista',
   standalone: true,
-  imports: [CommonModule, RouterModule, NgFor, NgIf, NgClass, CurrencyPipe, RouterLink],
+  imports: [
+    CommonModule,
+    RouterModule,
+    NgFor,
+    NgIf,
+    NgClass,
+    CurrencyPipe,
+    RouterLink,
+  ],
   templateUrl: './factura-vista.component.html',
   styleUrl: './factura-vista.component.css',
 })
@@ -15,18 +30,22 @@ export class FacturaVistaComponent implements OnInit {
   codigoProyecto: string = ''; // Código del proyecto obtenido de la URL
   facturas: Factura[] = []; // Lista de todas las facturas
   facturasFiltradas: Factura[] = []; // Lista de facturas filtradas
+  proyecto: any;
+  nombreproyecto: String = '';
 
   constructor(
     private facturaServicio: FacturaServicioService,
-    private route: ActivatedRoute // Para obtener el código del proyecto desde la URL
+    private route: ActivatedRoute,
+    private proyectosServicio: ProyectosServicioService
   ) {}
 
   ngOnInit() {
     // Obtener el código del proyecto desde la URL
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params) => {
       this.codigoProyecto = params.get('codigo') || ''; // Obtener el código desde la URL
       if (this.codigoProyecto) {
         this.getFacturas(); // Cargar las facturas del proyecto
+        this.obtenerNombreProyecto(this.codigoProyecto);
       }
     });
   }
@@ -36,7 +55,9 @@ export class FacturaVistaComponent implements OnInit {
    */
   async getFacturas() {
     try {
-      this.facturas = await this.facturaServicio.getFacturas(this.codigoProyecto);
+      this.facturas = await this.facturaServicio.getFacturas(
+        this.codigoProyecto
+      );
       this.facturasFiltradas = [...this.facturas]; // Se inicia con todas las facturas
     } catch (error) {
       console.error('❌ Error al obtener las facturas:', error);
@@ -49,9 +70,15 @@ export class FacturaVistaComponent implements OnInit {
    */
   buscarFactura(event: Event) {
     const filtro = (event.target as HTMLInputElement).value.toLowerCase();
-    this.facturasFiltradas = this.facturas.filter(factura =>
-      factura.numeroFactura.toLowerCase().includes(filtro) ||
-      factura.cliente.toLowerCase().includes(filtro)
+    this.facturasFiltradas = this.facturas.filter(
+      (factura) =>
+        factura.numeroFactura.toLowerCase().includes(filtro) ||
+        factura.cliente.toLowerCase().includes(filtro)
     );
+  }
+
+  async obtenerNombreProyecto(codigo: string) {
+    this.proyecto = await this.proyectosServicio.getProyectoByCodigo(codigo);
+    return (this.nombreproyecto = this.proyecto.nombre);
   }
 }
