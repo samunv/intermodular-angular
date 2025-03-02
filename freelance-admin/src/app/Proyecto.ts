@@ -1,5 +1,5 @@
 export interface Proyecto {
-  id?: string;  // ✅ Se agrega 'id' como opcional
+  id?: string; // ✅ Se agrega 'id' como opcional
   nombre: string;
   descripcion: string;
   estado: string;
@@ -8,4 +8,5 @@ export interface Proyecto {
   id_factura?: string;
   presupuesto: number;
   codigo: string;
+  autor: string;
 }
