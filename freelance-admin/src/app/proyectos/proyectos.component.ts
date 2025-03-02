@@ -75,4 +75,8 @@ export class ProyectosComponent implements OnInit {
       proyecto.nombre.toLowerCase().includes(this.textoBuscado.toLowerCase())
     );
   }
+
+
+
+
 }
