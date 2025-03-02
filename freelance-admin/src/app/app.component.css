@@ -1,8 +1,7 @@
-
-.seccion-salida-router{
+.seccion-salida-router {
 	margin-top: 30px;
 	margin-bottom: 30px;
-	
+
 }
 
 header {
@@ -13,18 +12,21 @@ header {
 	padding: 10px;
 	height: 50px;
 	background-color: white;
-	
+
 }
 
-.img-logo{
+.img-logo {
 	height: 50px;
 	width: 170px;
-	
+
 }
 
 nav ul {
 	display: flex;
 	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 0;
 }
 
 nav ul li {
@@ -39,20 +41,19 @@ nav ul li {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-  }
-  
-  .enlaces svg {
-	fill: currentColor; 
+}
+
+.enlaces svg {
+	fill: currentColor;
 	transition: fill 0.3s ease;
 	width: 30px;
 	height: 30px;
-  }
-  
-  .enlaces:hover {
+}
+
+.enlaces:hover {
 	color: #5E81F4;
-  }
-  
-  .enlaces:hover svg {
+}
+
+.enlaces:hover svg {
 	fill: #5E81F4;
-  }
-  
+}
