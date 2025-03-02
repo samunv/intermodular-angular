@@ -63,8 +63,10 @@ export class ProyectosComponent implements OnInit {
     try {
       await this.servicioProyectos.eliminarProyecto(id);
       this.proyectos = this.proyectos.filter((proyecto) => proyecto.id !== id);
+      this.cerrarVentanaEliminar();
     } catch (error) {
       console.error('Error al eliminar el proyecto:', error);
+
     }
   }
 
