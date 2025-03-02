@@ -1,18 +1,29 @@
 .btn-primary {
-    background-color: #5E81F4 !important;
-    border-color: #5E81F4 !important;
-  }
-  
-  .btn-primary:hover {
-    background-color: #4a6bd6 !important;
-    border-color: #4a6bd6 !important;
-  }
-  
-  .text-primary {
-    color: #5E81F4 !important;
-  }
-  
-  .text-primary:hover {
-    color: #4a6bd6 !important;
-  }
-  
+  background-color: #5E81F4 !important;
+  border-color: #5E81F4 !important;
+}
+
+.btn-primary:hover {
+  background-color: #4a6bd6 !important;
+  border-color: #4a6bd6 !important;
+}
+
+.text-primary {
+  color: #5E81F4 !important;
+}
+
+.text-primary:hover {
+  color: #4a6bd6 !important;
+}
+
+.login {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

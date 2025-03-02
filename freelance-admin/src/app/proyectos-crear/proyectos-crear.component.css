@@ -1,26 +1,28 @@
-.container {
-  width: 60%;
-  margin: 40px auto;
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  transition: all 0.3s ease-in-out;
-}
+
 
 .formulario {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 90%;
+  padding: 30px;
+margin-left: auto;
+margin-right: auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  transition: all 0.3s ease-in-out;
 }
 
-h2 {
-  text-align: center;
-  font-size: 24px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 20px;
+.titulos {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
+
 
 .form-group label {
   display: block;
@@ -68,7 +70,8 @@ select.form-control {
   align-items: center;
   justify-content: center;
   margin-top: 15px;
-  background-color: #F0F0F3; /* Fondo suave para resaltar la vista previa */
+  background-color: #F0F0F3;
+  /* Fondo suave para resaltar la vista previa */
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #C8C8C8;
@@ -79,7 +82,8 @@ select.form-control {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
-  border: 2px solid #5E81F4; /* Color principal del proyecto */
+  border: 2px solid #5E81F4;
+  /* Color principal del proyecto */
   padding: 4px;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 }

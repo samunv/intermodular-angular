@@ -14,6 +14,10 @@ import { TecnologiasService } from '../services/tecnologias.service';
 export class ProyectosComponent implements OnInit {
   proyectos: any[] = [];
   tecnologias: any;
+  ventanaEliminar: Boolean = false;
+  overlay: Boolean = false;
+  idProyectoSeleccionado: string = '';
+  nombreProyectoSeleccionado: string = '';
 
   constructor(
     private servicioProyectos: ProyectosServicioService,
@@ -37,16 +41,27 @@ export class ProyectosComponent implements OnInit {
   editarProyecto(id: string) {
     this.router.navigate(['/proyectos-editar', id]);
   }
-  
+
+  abrirVentanaEliminar(id: string, nombre: string) {
+    this.idProyectoSeleccionado = id;
+    this.ventanaEliminar = true;
+    this.nombreProyectoSeleccionado = nombre;
+    this.overlay = true;
+  }
+
+  cerrarVentanaEliminar() {
+    this.idProyectoSeleccionado = '';
+    this.ventanaEliminar = false;
+    this.nombreProyectoSeleccionado = '';
+    this.overlay = false;
+  }
 
   async eliminarProyecto(id: string) {
-    if (confirm('¿Seguro que quieres eliminar este proyecto?')) {
-      try {
-        await this.servicioProyectos.eliminarProyecto(id);
-        this.proyectos = this.proyectos.filter(proyecto => proyecto.id !== id);
-      } catch (error) {
-        console.error('Error al eliminar el proyecto:', error);
-      }
+    try {
+      await this.servicioProyectos.eliminarProyecto(id);
+      this.proyectos = this.proyectos.filter((proyecto) => proyecto.id !== id);
+    } catch (error) {
+      console.error('Error al eliminar el proyecto:', error);
     }
   }
 }

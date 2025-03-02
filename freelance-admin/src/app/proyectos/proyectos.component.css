@@ -129,11 +129,21 @@
 	background-color: #F0F0F3;
 	color: #8181A5;
 	font-weight: bold;
-
+	font-size: 14px;
 	display: flex;
 	flex-direction: row-reverse;
 	align-items: center;
 	justify-content: center;
+}
+
+.columna-info.botones button svg {
+	fill: #8181A5;
+}
+
+h3 {
+	font-size: medium;
+	font-weight: bold;
+	margin-bottom: 0;
 }
 
 .columna-info.botones button:hover {
@@ -211,4 +221,66 @@
 
 .contenedor-tecnologia-icono img {
 	margin-right: 2px;
+}
+
+.ventanaEliminar {
+	background-color: white;
+	border-radius: 12px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1000;
+	padding: 40px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+
+}
+
+.ventanaEliminar h2 {
+	text-align: center;
+	font-size: 23px;
+	font-weight: bold;
+}
+
+.botones-ventanaEliminar {
+	display: flex;
+flex-direction: row;
+}
+
+.botones-ventanaEliminar button {
+	margin: 10px;
+	border: none;
+	padding: 10px;
+	border-radius: 5px;
+	margin-right: 0px;
+	cursor: pointer;
+	background-color: #F0F0F3;
+	color: #8181A5;
+	font-weight: bold;
+	font-size: 14px;
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+	justify-content: center;
+}
+
+
+.botones-ventanaEliminar button:nth-child(1) {
+	background-color: #5E81F4;
+	color: white;
+}
+
+.overlay {
+	z-index: 999;
+	background-color: rgba(0, 0, 0, 0.585);
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	left: 0;
+	top: 0;
+
 }

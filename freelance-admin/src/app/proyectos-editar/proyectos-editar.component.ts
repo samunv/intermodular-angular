@@ -49,7 +49,7 @@ export class ProyectosEditarComponent implements OnInit {
     }
   }
 
-  // ✅ Manejar la selección de tecnologías
+  
   toggleTecnologia(tecnologia: string) {
     const index = this.proyecto.tecnologias.indexOf(tecnologia);
     if (index === -1) {
