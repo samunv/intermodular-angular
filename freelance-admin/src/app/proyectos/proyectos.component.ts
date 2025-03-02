@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { ProyectosServicioService } from '../services/proyectos-servicio.service';
 import { TecnologiasService } from '../services/tecnologias.service';
+import { FormsModule, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-proyectos',
   standalone: true,
-  imports: [CommonModule, RouterModule, NgFor, NgIf, NgClass],
+  imports: [CommonModule, RouterModule, NgFor, NgIf, NgClass, FormsModule],
   templateUrl: './proyectos.component.html',
   styleUrl: './proyectos.component.css',
 })
@@ -18,6 +19,8 @@ export class ProyectosComponent implements OnInit {
   overlay: Boolean = false;
   idProyectoSeleccionado: string = '';
   nombreProyectoSeleccionado: string = '';
+
+  textoBuscado: string = '';
 
   constructor(
     private servicioProyectos: ProyectosServicioService,
@@ -63,5 +66,11 @@ export class ProyectosComponent implements OnInit {
     } catch (error) {
       console.error('Error al eliminar el proyecto:', error);
     }
+  }
+
+  get proyectosFiltrados() {
+    return this.proyectos.filter((proyecto) =>
+      proyecto.nombre.toLowerCase().includes(this.textoBuscado.toLowerCase())
+    );
   }
 }
