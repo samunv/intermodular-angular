@@ -13,6 +13,7 @@ import { ProyectosServicioService } from '../services/proyectos-servicio.service
 
 @Component({
   selector: 'app-proyectos-crear',
+  standalone: true,
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './proyectos-crear.component.html',
   styleUrls: ['./proyectos-crear.component.css'],
@@ -21,7 +22,8 @@ export class ProyectosCrearComponent implements OnInit {
   proyectoForm: FormGroup;
   estados = ['Finalizado', 'En curso...', 'Sin comenzar'];
   tecnologias: any = [];
-  imagenBase64: string | null = null; // Guardará la imagen convertida en Base64
+  imagenBase64: string | null = null;
+  errorImagen: string = ''; // Para manejar errores de imagen
 
   constructor(
     private fb: FormBuilder,
@@ -30,11 +32,14 @@ export class ProyectosCrearComponent implements OnInit {
     private proyectosService: ProyectosServicioService
   ) {
     this.proyectoForm = this.fb.group({
-      nombre: ['', Validators.required],
-      descripcion: [''],
+      nombre: [
+        '',
+        [Validators.required, Validators.minLength(3), Validators.maxLength(50)],
+      ],
+      descripcion: ['', [Validators.required, Validators.maxLength(300)]],
       estado: ['', Validators.required],
-      tecnologias: [[]],
-      foto: [''], // Se almacenará como Base64
+      tecnologias: [[], Validators.required],
+      foto: ['', Validators.required], // La imagen ahora es obligatoria
     });
   }
 
@@ -51,52 +56,63 @@ export class ProyectosCrearComponent implements OnInit {
   }
 
   /**
-   * Convierte la imagen seleccionada a Base64 y la almacena en `imagenBase64`
+   * Verifica si un campo es inválido y ha sido tocado.
    */
-  onFileSelected(event: Event) {
-    // Obtener el archivo seleccionado por el usuario
-    const file = (event.target as HTMLInputElement).files?.[0];
-  
-    // Verificar si el usuario realmente seleccionó un archivo
-    if (file) {
-      const reader = new FileReader(); // Crear un lector de archivos
-  
-      // Evento que se ejecuta cuando la lectura de la imagen finaliza
-      reader.onload = () => {
-        this.imagenBase64 = reader.result as string; // Guardar la imagen en Base64
-      };
-  
-      // Iniciar la lectura del archivo en formato Base64
-      reader.readAsDataURL(file); //Convierte el File a Base64 con el metodo readAsDataURL
-    }
+  campoInvalido(campo: string): boolean {
+    const control = this.proyectoForm.get(campo);
+    return !!(control && control.invalid && control.touched);
   }
-  
 
   /**
-   * Crea un nuevo proyecto con la imagen en Base64 y lo guarda en Firestore
+   * Convierte la imagen seleccionada a Base64 y valida el tipo de archivo.
+   */
+  onFileSelected(event: Event) {
+    const file = (event.target as HTMLInputElement).files?.[0];
+
+    if (file) {
+      // Validar tipo de imagen
+      const validExtensions = ['image/png', 'image/jpeg', 'image/jpg'];
+      if (!validExtensions.includes(file.type)) {
+        this.errorImagen = 'Solo se permiten imágenes PNG, JPG o JPEG';
+        this.proyectoForm.get('foto')?.setErrors({ invalidType: true });
+        return;
+      } else {
+        this.errorImagen = ''; // Limpiar mensaje de error
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagenBase64 = reader.result as string;
+        this.proyectoForm.patchValue({ foto: this.imagenBase64 });
+        this.proyectoForm.get('foto')?.updateValueAndValidity();
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  /**
+   * Crea un nuevo proyecto validando el formulario antes de enviarlo.
    */
   async crearProyecto() {
     if (this.proyectoForm.valid) {
       try {
         const proyecto = {
           ...this.proyectoForm.value,
-          foto: this.imagenBase64 || '', // Guardar la imagen en Base64
+          foto: this.imagenBase64 || '',
           tecnologias: Array.isArray(this.proyectoForm.value.tecnologias)
             ? this.proyectoForm.value.tecnologias
             : [this.proyectoForm.value.tecnologias],
         };
 
-        // Guardar en Firestore
         const docRef = await this.proyectosService.createProyecto(proyecto);
-        console.log('✅ Proyecto creado con ID:', docRef.id);
-
-        // Redirigir al usuario
+        console.log('Proyecto creado con ID:', docRef.id);
         this.router.navigate(['/proyectos']);
       } catch (error) {
-        console.error('❌ Error al crear el proyecto:', error);
+        console.error('Error al crear el proyecto:', error);
       }
     } else {
-      console.warn('⚠ El formulario no es válido.');
+      console.warn('El formulario no es válido.');
+      this.proyectoForm.markAllAsTouched(); // Marca todos los campos para que aparezcan errores
     }
   }
 }

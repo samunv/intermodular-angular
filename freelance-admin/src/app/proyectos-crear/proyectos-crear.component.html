@@ -1,61 +1,72 @@
-<h1 class="titulos">Crear Nuevo proyecto</h1>
+<h1 class="titulos">Crear Nuevo Proyecto</h1>
 
-<form
-  [formGroup]="proyectoForm"
-  (ngSubmit)="crearProyecto()"
-  class="formulario"
->
+<form [formGroup]="proyectoForm" (ngSubmit)="crearProyecto()" class="formulario">
   <!-- Nombre del Proyecto -->
   <div class="form-group">
     <label>Nombre del Proyecto</label>
     <input formControlName="nombre" type="text" class="form-control" required />
+    <div *ngIf="campoInvalido('nombre')" class="text-danger">
+      <small *ngIf="proyectoForm.get('nombre')?.hasError('required')">
+        El nombre es obligatorio.
+      </small>
+      <small *ngIf="proyectoForm.get('nombre')?.hasError('minlength')">
+        Debe tener al menos 3 caracteres.
+      </small>
+      <small *ngIf="proyectoForm.get('nombre')?.hasError('maxlength')">
+        No puede superar los 50 caracteres.
+      </small>
+    </div>
   </div>
 
   <!-- Descripción -->
   <div class="form-group">
     <label>Descripción</label>
     <textarea formControlName="descripcion" class="form-control"></textarea>
+    <div *ngIf="campoInvalido('descripcion')" class="text-danger">
+      <small *ngIf="proyectoForm.get('descripcion')?.hasError('required')">
+        La descripción es obligatoria.
+      </small>
+      <small *ngIf="proyectoForm.get('descripcion')?.hasError('maxlength')">
+        No puede superar los 300 caracteres.
+      </small>
+    </div>
   </div>
 
   <!-- Estado -->
   <div class="form-group">
     <label>Estado</label>
     <select formControlName="estado" class="form-control">
-      <option *ngFor="let estado of estados" [value]="estado">
-        {{ estado }}
-      </option>
+      <option *ngFor="let estado of estados" [value]="estado">{{ estado }}</option>
     </select>
+    <div *ngIf="campoInvalido('estado')" class="text-danger">
+      <small>Debes seleccionar un estado.</small>
+    </div>
   </div>
 
   <!-- Tecnologías -->
   <div class="form-group">
     <label>Tecnologías</label>
-    <select
-      formControlName="tecnologias"
-      class="form-control tecnologias"
-      multiple
-    >
-      <option
-        *ngFor="let tecnologia of tecnologias"
-        [value]="tecnologia.nombre"
-      >
+    <select formControlName="tecnologias" class="form-control tecnologias" multiple>
+      <option *ngFor="let tecnologia of tecnologias" [value]="tecnologia.nombre">
         {{ tecnologia.nombre }}
       </option>
     </select>
-    <small class="help-text"
-      >Presiona Ctrl (Windows) para seleccionar múltiples tecnologías.</small
-    >
+    <small class="help-text">Presiona Ctrl (Windows) para seleccionar múltiples tecnologías.</small>
+    <div *ngIf="campoInvalido('tecnologias')" class="text-danger">
+      <small>Debe seleccionar al menos una tecnología.</small>
+    </div>
   </div>
 
   <!-- Subir Imagen -->
   <div class="form-group">
     <label>Subir Imagen</label>
-    <input
-      type="file"
-      (change)="onFileSelected($event)"
-      class="form-control"
-      accept="image/*"
-    />
+    <input type="file" (change)="onFileSelected($event)" class="form-control" accept="image/*" />
+    <div *ngIf="campoInvalido('foto')" class="text-danger">
+      <small>Debe subir una imagen.</small>
+    </div>
+    <div *ngIf="errorImagen" class="text-danger">
+      <small>{{ errorImagen }}</small>
+    </div>
   </div>
 
   <!-- Vista Previa de la Imagen -->
@@ -64,11 +75,7 @@
     <img [src]="imagenBase64" alt="Vista previa" class="img-preview" />
   </div>
 
-  <button
-    type="submit"
-    class="btn btn-success mt-3"
-    [disabled]="proyectoForm.invalid"
-  >
+  <button type="submit" class="btn btn-success mt-3" [disabled]="proyectoForm.invalid">
     Crear Proyecto
   </button>
 </form>
