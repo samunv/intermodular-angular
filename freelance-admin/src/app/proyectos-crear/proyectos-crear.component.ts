@@ -91,7 +91,7 @@ export class ProyectosCrearComponent implements OnInit {
         console.log('✅ Proyecto creado con ID:', docRef.id);
 
         // Redirigir al usuario
-        this.router.navigate(['/']);
+        this.router.navigate(['/proyectos']);
       } catch (error) {
         console.error('❌ Error al crear el proyecto:', error);
       }
