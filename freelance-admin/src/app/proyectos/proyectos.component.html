@@ -55,7 +55,8 @@
         <p
           [ngClass]="{
             'estado-finalizado': proyecto.estado === 'Finalizado',
-            'estado-en-curso': proyecto.estado === 'En curso'
+            'estado-en-curso': proyecto.estado === 'En curso',
+            'estado-sin-comenzar': proyecto.estado === 'Sin comenzar'
           }"
         >
           {{ proyecto.estado }}

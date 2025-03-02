@@ -197,6 +197,18 @@ h3 {
 	font-size: 14px;
 }
 
+
+.estado-sin-comenzar{
+	background-color: #F0F0F3;
+	color: #8181A5;
+	padding: 3px;
+	text-align: center;
+	border-radius: 5px;
+	margin-top: 5px;
+	font-weight: bold;
+	font-size: 14px;
+}
+
 .conjunto-tecnologias {
 	display: flex;
 	flex-direction: row;
