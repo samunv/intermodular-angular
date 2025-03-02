@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, addDoc, collection, getDocs, query, doc, deleteDoc, updateDoc, getDoc, where } from '@angular/fire/firestore';
+import { Proyecto } from '../Proyecto';
 
 @Injectable({
   providedIn: 'root',
@@ -36,20 +37,24 @@ export class ProyectosServicioService {
     }));
   }
 
-  /** 🟣 Obtener un solo proyecto por ID */
-  async getProyectoById(id: string) {
+  async getProyectoById(id: string): Promise<Proyecto | null> {
     try {
       const proyectoRef = doc(this.firestore, 'proyectos', id);
       const proyectoSnap = await getDoc(proyectoRef);
-
+  
       if (proyectoSnap.exists()) {
-        return { id: proyectoSnap.id, ...proyectoSnap.data() };
+        //  Asegurar que el objeto coincide con la interfaz Proyecto
+        return {
+          id: proyectoSnap.id,
+          ...(proyectoSnap.data() as Proyecto) //  Forzar el tipo de dato
+        };
       } else {
-        throw new Error('El proyecto no existe');
+        console.error(' El proyecto no existe.');
+        return null;
       }
     } catch (error) {
-      console.error('❌ Error al obtener el proyecto:', error);
-      throw error;
+      console.error(' Error al obtener el proyecto:', error);
+      return null;
     }
   }
 

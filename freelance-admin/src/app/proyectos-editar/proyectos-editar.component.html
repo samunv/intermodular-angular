@@ -1,46 +1,69 @@
 <h1 class="titulos">Editar Proyecto</h1>
 
-<section class="contenedor-proyectos" style="background-color: white; box-shadow: none; width: 90%;">
-
-
-    <div class="contenedor-izquierda">
-      <div class="columna-info nombre-descripcion">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" [(ngModel)]="proyecto.nombre" required />
-      </div>
-
-      <div class="columna-info descripcion">
-        <label for="descripcion">Descripción:</label>
-        <textarea id="descripcion" [(ngModel)]="proyecto.descripcion" required></textarea>
-      </div>
-
-      <div class="columna-info estado">
-        <label for="estado">Estado:</label>
-        <select id="estado" [(ngModel)]="proyecto.estado">
-          <option value="En curso">En curso</option>
-          <option value="Finalizado">Finalizado</option>
-        </select>
-      </div>
-
-      <!-- ✅ Selección de tecnologías -->
-      <div class="columna-info tecnologias">
-        <label>Tecnologías:</label>
-        <div class="lista-tecnologias">
-          <label *ngFor="let tecnologia of tecnologiasDisponibles">
-            <input
-              type="checkbox"
-              [checked]="proyecto.tecnologias.includes(tecnologia.nombre)"
-              (change)="toggleTecnologia(tecnologia.nombre)"
-            />
-            {{ tecnologia.nombre }}
-          </label>
-        </div>
+<section class="contenedor-proyectos">
+  <form [formGroup]="proyectoForm" class="proyectos">
+    <!-- Nombre -->
+    <div class="columna-info">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" formControlName="nombre" class="form-control" required />
+      <div *ngIf="campoInvalido('nombre')" class="text-danger mt-1">
+        <small *ngIf="proyectoForm.get('nombre')?.hasError('required')">El nombre es obligatorio.</small>
+        <small *ngIf="proyectoForm.get('nombre')?.hasError('minlength')">Debe tener al menos 3 caracteres.</small>
+        <small *ngIf="proyectoForm.get('nombre')?.hasError('maxlength')">No puede superar los 50 caracteres.</small>
       </div>
     </div>
 
-    <div class="columna-info botones">
-      <button class="btn-actualizar" (click)="actualizarProyecto()">Actualizar</button>
-      <button class="btn-cancelar" (click)="cancelarEdicion()">Cancelar</button>
+    <!-- Descripción -->
+    <div class="columna-info">
+      <label for="descripcion">Descripción:</label>
+      <textarea id="descripcion" formControlName="descripcion" class="form-control" required></textarea>
+      <div *ngIf="campoInvalido('descripcion')" class="text-danger mt-1">
+        <small *ngIf="proyectoForm.get('descripcion')?.hasError('required')">La descripción es obligatoria.</small>
+        <small *ngIf="proyectoForm.get('descripcion')?.hasError('maxlength')">Máximo 300 caracteres.</small>
+      </div>
     </div>
 
+    <!-- Estado -->
+    <div class="columna-info">
+      <label for="estado">Estado:</label>
+      <select id="estado" formControlName="estado" class="form-control">
+        <option *ngFor="let estado of estados" [value]="estado">{{ estado }}</option>
+      </select>
+      <div *ngIf="campoInvalido('estado')" class="text-danger mt-1">
+        <small>Debes seleccionar un estado.</small>
+      </div>
+    </div>
+
+   <!-- Tecnologías -->
+<div class="columna-info">
+  <label>Tecnologías:</label>
+  <div class="lista-tecnologias">
+    <label *ngFor="let tecnologia of tecnologiasDisponibles" class="tech-item">
+      <input type="checkbox" 
+        [checked]="proyectoForm.value.tecnologias.includes(tecnologia.nombre)"
+        (change)="toggleTecnologia(tecnologia.nombre)" />
+      {{ tecnologia.nombre }}
+    </label>
+  </div>
+
+  <!-- Mostrar error si tecnologías está vacío o es inválido -->
+  <div *ngIf="proyectoForm.get('tecnologias')?.invalid || proyectoForm.value.tecnologias.length === 0" 
+       class="text-danger mt-1">
+    <small>Debe seleccionar al menos una tecnología.</small>
+  </div>
+</div>
+
+
+  <!-- Botones alineados correctamente -->
+<div class="columna-info botones">
+  <div class="btn-container">
+    <button type="button" class="btn-cancelar" (click)="cancelarEdicion()">Cancelar</button>
+    <button type="button" class="btn-actualizar" (click)="actualizarProyecto()" [disabled]="proyectoForm.invalid">
+      Actualizar
+    </button>
+  </div>
+</div>
+
+
+  </form>
 </section>

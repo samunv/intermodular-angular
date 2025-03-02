@@ -1,31 +1,43 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProyectosServicioService } from '../services/proyectos-servicio.service';
 import { TecnologiasService } from '../services/tecnologias.service';
 
 @Component({
   selector: 'app-proyectos-editar',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './proyectos-editar.component.html',
-  styleUrl: './proyectos-editar.component.css',
+  styleUrls: ['./proyectos-editar.component.css'],
 })
 export class ProyectosEditarComponent implements OnInit {
-  idProyecto: string = ''; // ID del proyecto obtenido de la URL
-  proyecto: any = { nombre: '', descripcion: '', estado: '', tecnologias: [] }; // Datos del proyecto
-  tecnologiasDisponibles: any[] = []; // Lista de tecnologías disponibles
+  proyectoForm: FormGroup;
+  idProyecto: string = ''; 
+  estados = ['Finalizado', 'En curso', 'Sin comenzar'];
+  tecnologiasDisponibles: any[] = []; 
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private fb: FormBuilder,
     private servicioProyectos: ProyectosServicioService,
     private servicioTecnologias: TecnologiasService
-  ) {}
+  ) {
+    //  Inicializar el formulario con validaciones
+    this.proyectoForm = this.fb.group({
+      nombre: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      descripcion: ['', [Validators.required, Validators.maxLength(300)]],
+      estado: ['', Validators.required],
+      tecnologias: [[], Validators.required], 
+      foto: [''],
+      presupuesto: [0],
+      codigo: ['']
+    });
+  }
 
   ngOnInit() {
-    // Obtener el ID del proyecto desde la URL
     this.idProyecto = this.route.snapshot.paramMap.get('id') || '';
     if (this.idProyecto) {
       this.getProyecto();
@@ -33,42 +45,86 @@ export class ProyectosEditarComponent implements OnInit {
     this.getTecnologiasDisponibles();
   }
 
+  /**
+   *  Obtiene el proyecto desde Firestore con `Promise`
+   */
   async getProyecto() {
     try {
-      this.proyecto = await this.servicioProyectos.getProyectoById(this.idProyecto);
+      const proyecto = await this.servicioProyectos.getProyectoById(this.idProyecto);
+      
+      if (proyecto) {
+        this.proyectoForm.patchValue({
+          nombre: proyecto.nombre || '',
+          descripcion: proyecto.descripcion || '',
+          estado: proyecto.estado || '',
+          tecnologias: proyecto.tecnologias || [],
+          foto: proyecto.foto || '',
+          presupuesto: proyecto.presupuesto || 0,
+          codigo: proyecto.codigo || ''
+        });
+      } else {
+        console.error(' Proyecto no encontrado.');
+      }
     } catch (error) {
-      console.error('❌ Error al obtener el proyecto:', error);
+      console.error(' Error al obtener el proyecto:', error);
     }
   }
 
+  /**
+   *  Obtiene las tecnologías disponibles
+   */
   async getTecnologiasDisponibles() {
     try {
       this.tecnologiasDisponibles = await this.servicioTecnologias.getTecnologias();
     } catch (error) {
-      console.error('❌ Error al obtener las tecnologías:', error);
+      console.error(' Error al obtener las tecnologías:', error);
     }
   }
 
-  
+  /**
+   *  Verifica si un campo es inválido y ha sido tocado
+   */
+  campoInvalido(campo: string): boolean {
+    const control = this.proyectoForm.get(campo);
+    return !!(control && control.invalid && control.touched);
+  }
+
+  /**
+   *  Maneja la selección/deselección de tecnologías
+   */
   toggleTecnologia(tecnologia: string) {
-    const index = this.proyecto.tecnologias.indexOf(tecnologia);
+    const tecnologiasSeleccionadas = this.proyectoForm.value.tecnologias || [];
+    const index = tecnologiasSeleccionadas.indexOf(tecnologia);
     if (index === -1) {
-      this.proyecto.tecnologias.push(tecnologia);
+      tecnologiasSeleccionadas.push(tecnologia);
     } else {
-      this.proyecto.tecnologias.splice(index, 1);
+      tecnologiasSeleccionadas.splice(index, 1);
     }
+    this.proyectoForm.patchValue({ tecnologias: tecnologiasSeleccionadas });
+    this.proyectoForm.get('tecnologias')?.updateValueAndValidity(); // Forzar validación
   }
 
+  /**
+   *  Actualiza el proyecto en Firestore
+   */
   async actualizarProyecto() {
-    try {
-      await this.servicioProyectos.editarProyecto(this.idProyecto, this.proyecto);
-      alert('✅ Proyecto actualizado con éxito');
-      this.router.navigate(['/proyectos']);
-    } catch (error) {
-      console.error('❌ Error al actualizar el proyecto:', error);
+    if (this.proyectoForm.valid) {
+      try {
+        await this.servicioProyectos.editarProyecto(this.idProyecto, this.proyectoForm.value);
+        alert(' Proyecto actualizado con éxito');
+        this.router.navigate(['/proyectos']);
+      } catch (error) {
+        console.error(' Error al actualizar el proyecto:', error);
+      }
+    } else {
+      console.warn(' El formulario no es válido.');
+      this.proyectoForm.markAllAsTouched(); 
     }
   }
 
+  /**
+   *  Cancela la edición y vuelve a la lista de proyectos
+   */
   cancelarEdicion() {
     this.router.navigate(['/proyectos']);
   }

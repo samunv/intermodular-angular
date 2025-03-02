@@ -8,9 +8,8 @@
 }
 
 .contenedor-proyectos {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
-  padding: 20px;
   background: #f4f4f4;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -60,42 +59,45 @@ textarea {
   height: 80px;
 }
 
+/* ✅ Alineación correcta de los botones sin superposición */
 .columna-info.botones {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin-top: 20px;
+}
+
+.btn-container {
+  display: flex;
+  gap: 10px; /* Espacio entre botones */
 }
 
 button {
   font-weight: bold;
   transition: all 0.3s ease;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .btn-actualizar {
   background-color: #5E81F4;
   color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 .btn-actualizar:hover {
-  background-color: #5E81F4;
+  background-color: #4761c2;
 }
 
 .btn-cancelar {
   background-color: gray;
   color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 .btn-cancelar:hover {
   background-color: lightgray;
 }
+
 
 .lista-tecnologias {
   display: flex;
