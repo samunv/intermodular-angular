@@ -1,13 +1,17 @@
 <header *ngIf="!isLoginPage">
   <div class="logo">
-    <a href="/proyectos">
+    <a routerLink="/proyectos"
+    routerLinkActive="active"
+    >
       <img [src]="logo" alt="" class="img-logo" />
     </a>
   </div>
   <nav>
     <ul>
       <li>
-        <a href="/proyectos" class="enlaces">
+        <a routerLink="/proyectos"
+        routerLinkActive="active" 
+        class="enlaces">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="24px"
@@ -22,7 +26,10 @@
         </a>
       </li>
       <li>
-        <a href="/perfil" class="enlaces">
+        <a routerLink="/perfil" 
+        routerLinkActive="active" 
+        class="enlaces"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="24px"
