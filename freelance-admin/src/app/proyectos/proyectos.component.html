@@ -142,7 +142,7 @@
 <div *ngIf="overlay" class="overlay"></div>
 
 <div class="ventana-detalles" *ngIf="ventanaDetalles && proyecto != null">
-  <h1>{{ proyecto.nombre }}</h1>
+  <h2 style="font-weight: bold;">{{ proyecto.nombre }}</h2>
 
   <div class="columnas">
     <div>
@@ -177,5 +177,5 @@
     </div>
   </div>
 
-  <button (click)="cerrarVentanaDetalles()">Cerrar</button>
+  <div class="boton"><button (click)="cerrarVentanaDetalles()">Cerrar</button></div>
 </div>
