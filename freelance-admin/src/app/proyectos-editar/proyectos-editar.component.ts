@@ -1,7 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ProyectosServicioService } from '../services/proyectos-servicio.service';
 import { TecnologiasService } from '../services/tecnologias.service';
 
@@ -14,9 +19,10 @@ import { TecnologiasService } from '../services/tecnologias.service';
 })
 export class ProyectosEditarComponent implements OnInit {
   proyectoForm: FormGroup;
-  idProyecto: string = ''; 
+  idProyecto: string = '';
   estados = ['Finalizado', 'En curso', 'Sin comenzar'];
-  tecnologiasDisponibles: any[] = []; 
+  tecnologiasDisponibles: any[] = [];
+  nombreProyecto: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -27,13 +33,20 @@ export class ProyectosEditarComponent implements OnInit {
   ) {
     //  Inicializar el formulario con validaciones
     this.proyectoForm = this.fb.group({
-      nombre: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      nombre: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50),
+        ],
+      ],
       descripcion: ['', [Validators.required, Validators.maxLength(300)]],
       estado: ['', Validators.required],
-      tecnologias: [[], Validators.required], 
+      tecnologias: [[], Validators.required],
       foto: [''],
       presupuesto: [0],
-      codigo: ['']
+      codigo: [''],
     });
   }
 
@@ -50,8 +63,10 @@ export class ProyectosEditarComponent implements OnInit {
    */
   async getProyecto() {
     try {
-      const proyecto = await this.servicioProyectos.getProyectoById(this.idProyecto);
-      
+      const proyecto = await this.servicioProyectos.getProyectoById(
+        this.idProyecto
+      );
+
       if (proyecto) {
         this.proyectoForm.patchValue({
           nombre: proyecto.nombre || '',
@@ -60,8 +75,9 @@ export class ProyectosEditarComponent implements OnInit {
           tecnologias: proyecto.tecnologias || [],
           foto: proyecto.foto || '',
           presupuesto: proyecto.presupuesto || 0,
-          codigo: proyecto.codigo || ''
+          codigo: proyecto.codigo || '',
         });
+        this.nombreProyecto = proyecto.nombre;
       } else {
         console.error(' Proyecto no encontrado.');
       }
@@ -75,7 +91,8 @@ export class ProyectosEditarComponent implements OnInit {
    */
   async getTecnologiasDisponibles() {
     try {
-      this.tecnologiasDisponibles = await this.servicioTecnologias.getTecnologias();
+      this.tecnologiasDisponibles =
+        await this.servicioTecnologias.getTecnologias();
     } catch (error) {
       console.error(' Error al obtener las tecnologías:', error);
     }
@@ -110,7 +127,10 @@ export class ProyectosEditarComponent implements OnInit {
   async actualizarProyecto() {
     if (this.proyectoForm.valid) {
       try {
-        await this.servicioProyectos.editarProyecto(this.idProyecto, this.proyectoForm.value);
+        await this.servicioProyectos.editarProyecto(
+          this.idProyecto,
+          this.proyectoForm.value
+        );
         alert(' Proyecto actualizado con éxito');
         this.router.navigate(['/proyectos']);
       } catch (error) {
@@ -118,7 +138,7 @@ export class ProyectosEditarComponent implements OnInit {
       }
     } else {
       console.warn(' El formulario no es válido.');
-      this.proyectoForm.markAllAsTouched(); 
+      this.proyectoForm.markAllAsTouched();
     }
   }
 
