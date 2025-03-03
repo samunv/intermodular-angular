@@ -33,6 +33,9 @@ export class FacturaVistaComponent implements OnInit {
   proyecto: any;
   nombreproyecto: String = '';
   presupuestoFinal: number = 0;
+  overlay: boolean = false;
+  ventanaInfo: boolean = false;
+  factura: Factura | null = null;
 
   constructor(
     private facturaServicio: FacturaServicioService,
@@ -56,10 +59,12 @@ export class FacturaVistaComponent implements OnInit {
    */
   async getFacturas() {
     try {
-      const facturasFirebase = await this.facturaServicio.getFacturas(this.codigoProyecto);
-      this.facturas = facturasFirebase.map(factura => ({
+      const facturasFirebase = await this.facturaServicio.getFacturas(
+        this.codigoProyecto
+      );
+      this.facturas = facturasFirebase.map((factura) => ({
         ...factura,
-        total: Number(factura.total) || 0
+        total: Number(factura.total) || 0,
       }));
       this.facturasFiltradas = [...this.facturas]; // Solo para mostrar
       this.calcularTotalFacturas(); // ✅ Calcula el total después de cargar todo
@@ -67,8 +72,6 @@ export class FacturaVistaComponent implements OnInit {
       console.error('❌ Error al obtener las facturas:', error);
     }
   }
-  
-  
 
   /**
    * Filtra las facturas según la búsqueda del usuario
@@ -95,9 +98,20 @@ export class FacturaVistaComponent implements OnInit {
       0
     );
   }
-  
-  
-  
-  
-  
+
+  abrirVentanaInfo(numero: string) {
+    this.overlay = true;
+    this.ventanaInfo = true;
+    this.obtenerInfoFactura(numero);
+  }
+
+  cerrarVentanaInfo() {
+    this.overlay = false;
+    this.ventanaInfo = false;
+    this.factura = null;
+  }
+
+  async obtenerInfoFactura(numero: string) {
+    this.factura = await this.facturaServicio.getFacturaByNumero(numero);
+  }
 }
