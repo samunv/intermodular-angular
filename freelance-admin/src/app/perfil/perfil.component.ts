@@ -1,19 +1,22 @@
-import { CommonModule } from '@angular/common'; //  Importar CommonModule
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { User } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
-  standalone: true, //  Necesario en Angular 19
-  imports: [CommonModule], //  Agregar CommonModule aquí
+  standalone: true,
+  imports: [CommonModule], 
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css'],
 })
 export class PerfilComponent implements OnInit {
   usuario: User | null = null;
 
-  constructor(private authService: AuthService) {}
+  @Input() cerrarVentana!: () => void; // Recibe la función para cerrar el modal
+
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.usuario = this.authService.getUsuarioActual();
@@ -21,5 +24,7 @@ export class PerfilComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+    this.cerrarVentana(); // Cierra el modal antes de redirigir
+    this.router.navigate(['/login']); // Redirige al login
   }
 }

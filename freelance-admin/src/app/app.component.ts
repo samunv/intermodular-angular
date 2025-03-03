@@ -1,30 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router, RouterOutlet, RouterLink, NavigationEnd } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
-import { AuthService } from './services/auth.service'; 
+import { PerfilComponent } from './perfil/perfil.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, FormsModule, NgIf],
+  imports: [RouterOutlet, RouterLink, FormsModule, NgIf, PerfilComponent], 
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'Freelance Admin';
   logo = "/img/Freelance-admin-logo.png";
   isLoginPage = false;
+  mostrarPerfil = false; // Controla la visibilidad del modal
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.isLoginPage = this.router.url === '/login';
+        if (this.isLoginPage) {
+          this.cerrarPerfil(); // Cierra el modal si está en login
+        }
+      }
+    });
+  }
 
-  ngOnInit() {    const usuario = this.authService.getUsuarioActual();
-    console.log('Usuario autenticado en AppComponent:', usuario);
+  abrirPerfil() {
+    this.mostrarPerfil = true;
+  }
 
-    if (usuario) {
-      this.router.navigate(['/proyectos']); 
-    } else {
-      this.router.navigate(['/login']); 
-    }
+  cerrarPerfil() {
+    this.mostrarPerfil = false;
   }
 }
