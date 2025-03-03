@@ -4,6 +4,8 @@ import { AuthGuard } from './guards/auth.guard'; // Importamos el AuthGuard
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', loadComponent: () => import('./login/login.component').then(m => m.LoginComponent) },
+  { path: 'registro', loadComponent: () => import('./registro/registro.component').then(m => m.RegistroComponent) }, // Nueva ruta
+
 
   //  Rutas protegidas por el AuthGuard
   { path: 'perfil', loadComponent: () => import('./perfil/perfil.component').then(m => m.PerfilComponent), canActivate: [AuthGuard] },
