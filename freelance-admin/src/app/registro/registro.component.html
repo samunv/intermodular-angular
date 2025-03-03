@@ -1,1 +1,65 @@
-<p>registro works!</p>
+<section class="registro">
+    <!-- Logo centrado arriba -->
+    <img [src]="logo" alt="Logo" class="img-logo mb-3" />
+  
+    <div class="card p-4 shadow-lg border-0" style="width: 24rem">
+      <div class="card-body">
+        <h3 class="text-center" style="color: #5e81f4">Crea tu cuenta</h3>
+  
+        <form (ngSubmit)="register()">
+          <!-- Correo Electrónico -->
+          <div class="mb-3">
+            <label class="form-label">Correo Electrónico</label>
+            <input
+              type="email"
+              [(ngModel)]="email"
+              name="email"
+              class="form-control"
+              required
+            />
+          </div>
+  
+          <!-- Contraseña -->
+          <div class="mb-3">
+            <label class="form-label">Contraseña</label>
+            <input
+              type="password"
+              [(ngModel)]="password"
+              name="password"
+              class="form-control"
+              required
+            />
+          </div>
+  
+          <!-- Confirmar Contraseña -->
+          <div class="mb-3">
+            <label class="form-label">Confirmar Contraseña</label>
+            <input
+              type="password"
+              [(ngModel)]="confirmPassword"
+              name="confirmPassword"
+              class="form-control"
+              required
+            />
+          </div>
+  
+          <!-- Botón de Registro -->
+          <button
+            type="submit"
+            class="btn w-100"
+            style="background-color: #5e81f4; color: white"
+          >
+            Registrarse
+          </button>
+  
+          <div class="text-center my-3 text-muted">o</div>
+          <!-- Enlace para ir al login -->
+          <div class="text-center mt-3">
+            <small>¿Ya tienes una cuenta?</small>
+            <a routerLink="/login" style="color: #5e81f4; font-weight: bold;">Inicia sesión</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  
