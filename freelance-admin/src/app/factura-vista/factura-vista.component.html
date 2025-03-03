@@ -61,9 +61,19 @@
   </div>
 </section>
 
-<section class="presupuesto" *ngIf="facturasFiltradas.length !== 0">
-  <h2>Presupuesto Final:</h2>
-  <p style="margin: 0px">{{ presupuestoFinal }} €</p>
+<section class="presupuestos" *ngIf="facturasFiltradas.length !== 0">
+  <div class="presupuesto presupuesto-total">
+    <h2>Presupuesto total actual:</h2>
+    <div class="contenedor-btn-presupuesto">
+      <button>Guardar como Total Final</button>
+      <p style="margin: 0px">{{ presupuestoFinal }} €</p>
+    </div>
+  </div>
+
+  <div class="presupuesto presupuesto-total">
+    <h2>Presupuesto Total Final:</h2>
+    <p style="margin: 0px">0€ (Actualmente hay que modificar esta función)</p>
+  </div>
 </section>
 
 <div *ngIf="ventanaInfo && factura != null" class="ventana-info">
