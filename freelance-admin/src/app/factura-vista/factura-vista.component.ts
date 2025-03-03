@@ -10,6 +10,7 @@ import { FacturaServicioService } from '../services/factura-servicio.service';
 import { Factura } from '../Factura';
 import { RouterModule, RouterLink, ActivatedRoute } from '@angular/router';
 import { ProyectosServicioService } from '../services/proyectos-servicio.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-factura-vista',
@@ -30,12 +31,14 @@ export class FacturaVistaComponent implements OnInit {
   codigoProyecto: string = ''; // Código del proyecto obtenido de la URL
   facturas: Factura[] = []; // Lista de todas las facturas
   facturasFiltradas: Factura[] = []; // Lista de facturas filtradas
-  proyecto: any;
-  nombreproyecto: String = '';
+  proyecto$!: Observable<any>;
+  nombreproyecto: string = '';
+  presupuestoBBDD: string = '';
   presupuestoFinal: number = 0;
   overlay: boolean = false;
   ventanaInfo: boolean = false;
   factura: Factura | null = null;
+  btnGuardarActivo: boolean = true;
 
   constructor(
     private facturaServicio: FacturaServicioService,
@@ -49,7 +52,7 @@ export class FacturaVistaComponent implements OnInit {
       this.codigoProyecto = params.get('codigo') || ''; // Obtener el código desde la URL
       if (this.codigoProyecto) {
         this.getFacturas(); // Cargar las facturas del proyecto
-        this.obtenerNombreProyecto(this.codigoProyecto);
+        this.obtenerDatos(this.codigoProyecto);
       }
     });
   }
@@ -87,10 +90,18 @@ export class FacturaVistaComponent implements OnInit {
     this.calcularTotalFacturas();
   }
 
-  async obtenerNombreProyecto(codigo: string) {
-    this.proyecto = await this.proyectosServicio.getProyectoByCodigo(codigo);
-    this.nombreproyecto = this.proyecto.nombre;
+  obtenerDatos(codigo: string) {
+    this.proyectosServicio.getProyectoByCodigo(codigo).subscribe((proyectos) => {
+      if (proyectos.length > 0) {
+        const proyecto = proyectos[0];
+        this.nombreproyecto = proyecto.nombre;
+        this.presupuestoBBDD = proyecto.presupuesto;
+      } else {
+        console.warn('⚠️ Proyecto no encontrado');
+      }
+    });
   }
+  
 
   calcularTotalFacturas() {
     this.presupuestoFinal = this.facturasFiltradas.reduce(
@@ -113,5 +124,10 @@ export class FacturaVistaComponent implements OnInit {
 
   async obtenerInfoFactura(numero: string) {
     this.factura = await this.facturaServicio.getFacturaByNumero(numero);
+  }
+
+  guardarTotalFinal(total: number, codigo: string) {
+    this.btnGuardarActivo = false;
+    this.proyectosServicio.actualizarPresupuesto(codigo, total);
   }
 }
