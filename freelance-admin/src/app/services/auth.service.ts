@@ -6,14 +6,14 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  usuarioActual: User | null = null; //  Guardará el usuario autenticado
+  usuarioActual: User | null = null; //Guarda el usuario autenticado
 
   constructor(private auth: Auth, private router: Router) {
-    this.verificarSesion(); //  Verifica si hay sesión activa al iniciar la app
+    this.verificarSesion(); // Verificar sesión al iniciar la app
   }
 
   /**
-   *  Configura Firebase para que la sesión se mantenga
+   *  Activa la persistencia de sesión en Firebase
    */
   async setPersistenceSession() {
     try {
@@ -25,61 +25,64 @@ export class AuthService {
   }
 
   /**
-   *  Inicia sesión en Firebase y guarda la sesión
+   *  Inicia sesión y guarda la sesión en localStorage
    */
   async login(email: string, password: string): Promise<void> {
     try {
-      await this.setPersistenceSession(); //  Activa la persistencia de sesión
+      await this.setPersistenceSession(); //Activa persistencia antes de login
       const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
       this.usuarioActual = userCredential.user;
-      localStorage.setItem('user', JSON.stringify(this.usuarioActual)); //  Guardar usuario en localStorage
-      console.log(' Usuario autenticado:', this.usuarioActual);
-      this.router.navigate(['/proyectos']); //  Redirigir a la página principal
+      localStorage.setItem('user', JSON.stringify(this.usuarioActual)); //Guarda en localStorage
+      console.log('Usuario autenticado:', this.usuarioActual);
+      this.router.navigate(['/proyectos']); //Redirigir tras login
     } catch (error) {
-      console.error(' Error al iniciar sesión:', error);
+      console.error('Error al iniciar sesión:', error);
       throw error;
     }
   }
 
   /**
-   *  Verifica si hay un usuario autenticado, incluso después de recargar la página
+   * Verifica la sesión en Firebase y localStorage
    */
   verificarSesion() {
     onAuthStateChanged(this.auth, (usuario) => {
       if (usuario) {
         this.usuarioActual = usuario;
-        localStorage.setItem('user', JSON.stringify(usuario)); //  Guardar usuario en almacenamiento local
-        console.log(' Sesión iniciada automáticamente:', usuario);
+        localStorage.setItem('user', JSON.stringify(usuario)); //Guardar usuario en almacenamiento local
+        console.log('Sesión iniciada automáticamente:', usuario);
+        this.router.navigate(['/proyectos']); //Redirigir automáticamente si está autenticado
       } else {
         this.usuarioActual = null;
-        localStorage.removeItem('user'); //  Eliminar usuario si no hay sesión
-        console.log(' No hay sesión activa.');
+        localStorage.removeItem('user'); // Eliminar usuario si no hay sesión
+        console.log('No hay sesión activa.');
       }
     });
   }
-
+  
   /**
-   *  Verifica si el usuario está autenticado
+   *  Verifica si hay un usuario autenticado
    */
   isAuthenticated(): boolean {
-    return !!this.auth.currentUser || !!localStorage.getItem('user'); //  Ahora también verifica localStorage
+    const usuarioGuardado = localStorage.getItem('user');
+    return !!this.auth.currentUser || !!usuarioGuardado; // Verificar sesión en Firebase y LocalStorage
   }
+  
 
   /**
-   *  Cierra sesión del usuario en Firebase
+   *  Cierra sesión y limpia el almacenamiento
    */
   async logout(): Promise<void> {
     await signOut(this.auth);
     this.usuarioActual = null;
     localStorage.removeItem('user'); //  Eliminar usuario del almacenamiento
     console.log(' Sesión cerrada.');
-    this.router.navigate(['/login']); //  Redirigir al login después del logout
+    this.router.navigate(['/login']); //  Redirigir tras logout
   }
-  /**
- *  Obtiene la información del usuario autenticado
- */
-getUsuarioActual(): User | null {
-  return this.auth.currentUser || JSON.parse(localStorage.getItem('user') || 'null');
-}
 
+  /** 
+   *  Obtiene el usuario autenticado, incluso tras recargar
+   */
+  getUsuarioActual(): User | null {
+    return this.auth.currentUser || JSON.parse(localStorage.getItem('user') || 'null');
+  }
 }

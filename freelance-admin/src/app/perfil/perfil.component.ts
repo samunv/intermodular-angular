@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common'; // ✅ Importar CommonModule
+import { CommonModule } from '@angular/common'; //  Importar CommonModule
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { User } from '@angular/fire/auth';
