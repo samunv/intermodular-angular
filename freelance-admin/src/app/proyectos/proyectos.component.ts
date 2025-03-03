@@ -50,6 +50,7 @@ export class ProyectosComponent implements OnInit {
   }
 
   abrirVentanaEliminar(id: string, nombre: string) {
+    this.cerrarVentanaDetalles();
     this.idProyectoSeleccionado = id;
     this.ventanaEliminar = true;
     this.nombreProyectoSeleccionado = nombre;
@@ -80,6 +81,7 @@ export class ProyectosComponent implements OnInit {
   }
 
   abrirVentanaDetalles(id: string) {
+    this.cerrarVentanaEliminar();
     this.ventanaDetalles = true;
     this.overlay = true;
     this.obtenerDetalleProyecto(id);

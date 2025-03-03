@@ -105,7 +105,7 @@
           />
         </svg>
       </button>
-      <button (click)="abrirVentanaEliminar(proyecto.id, proyecto.nombre)">
+      <button (click)="abrirVentanaEliminar(proyecto.id, proyecto.nombre); $event.stopPropagation()">
         Eliminar
         <svg
           xmlns="http://www.w3.org/2000/svg"
