@@ -9,4 +9,9 @@ export interface Proyecto {
   presupuesto: number;
   codigo: string;
   autor: string;
+  cifAutor: string;
+  direccionAutor: string;
+  cifCliente: string;
+  cliente: string;
+  direccionCliente: string;
 }

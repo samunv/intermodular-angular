@@ -12,7 +12,7 @@
   margin: 0 auto;
   background: #f4f4f4;
   border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 
 .contenedor-buscador {
@@ -21,7 +21,6 @@
   background-color: #fff;
   padding: 10px;
   border-radius: 5px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -30,8 +29,8 @@
   flex-direction: column;
   background: white;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: none;
 }
 
 .columna-info {
@@ -68,7 +67,8 @@ textarea {
 
 .btn-container {
   display: flex;
-  gap: 10px; /* Espacio entre botones */
+  gap: 10px;
+  /* Espacio entre botones */
 }
 
 button {

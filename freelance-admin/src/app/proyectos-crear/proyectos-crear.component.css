@@ -35,6 +35,24 @@
   margin: 10px auto;
 }
 
+.form-group.autor-cliente {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.columnas-autor-cliente {
+  margin: 0px 10px;
+}
+
+.columnas-autor-cliente:nth-child(1) {
+  margin-left: 0;
+}
+
+.columnas-autor-cliente:last-child {
+  margin-right: 0;
+}
+
 .form-control {
   width: 100%;
   padding: 10px;

@@ -44,6 +44,46 @@ export class ProyectosCrearComponent implements OnInit {
       estado: ['', Validators.required],
       tecnologias: [[], Validators.required],
       foto: ['', Validators.required], // La imagen ahora es obligatoria
+      autor: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(30),
+        ],
+      ],
+      direccionAutor: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(100),
+        ],
+      ],
+      cifAutor: [
+        '',
+        [Validators.required, Validators.minLength(8), Validators.maxLength(9)],
+      ],
+      cliente: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(30),
+        ],
+      ],
+      direccionCliente: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(100),
+        ],
+      ],
+      cifCliente: [
+        '',
+        [Validators.required, Validators.minLength(8), Validators.maxLength(9)],
+      ],
     });
   }
 

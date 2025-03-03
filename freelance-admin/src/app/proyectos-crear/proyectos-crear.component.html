@@ -1,6 +1,11 @@
 <h1 class="titulos">Crear Nuevo Proyecto</h1>
 
-<form [formGroup]="proyectoForm" (ngSubmit)="crearProyecto()" class="formulario">
+<form
+  [formGroup]="proyectoForm"
+  (ngSubmit)="crearProyecto()"
+  class="formulario"
+>
+  <strong>Todos los campos son obligatorios.</strong>
   <!-- Nombre del Proyecto -->
   <div class="form-group">
     <label>Nombre del Proyecto</label>
@@ -36,7 +41,9 @@
   <div class="form-group">
     <label>Estado</label>
     <select formControlName="estado" class="form-control">
-      <option *ngFor="let estado of estados" [value]="estado">{{ estado }}</option>
+      <option *ngFor="let estado of estados" [value]="estado">
+        {{ estado }}
+      </option>
     </select>
     <div *ngIf="campoInvalido('estado')" class="text-danger">
       <small>Debes seleccionar un estado.</small>
@@ -46,21 +53,114 @@
   <!-- Tecnologías -->
   <div class="form-group">
     <label>Tecnologías</label>
-    <select formControlName="tecnologias" class="form-control tecnologias" multiple>
-      <option *ngFor="let tecnologia of tecnologias" [value]="tecnologia.nombre">
+    <select
+      formControlName="tecnologias"
+      class="form-control tecnologias"
+      multiple
+    >
+      <option
+        *ngFor="let tecnologia of tecnologias"
+        [value]="tecnologia.nombre"
+      >
         {{ tecnologia.nombre }}
       </option>
     </select>
-    <small class="help-text">Presiona Ctrl (Windows) para seleccionar múltiples tecnologías.</small>
+    <small class="help-text"
+      >Presiona Ctrl (Windows) para seleccionar múltiples tecnologías.</small
+    >
     <div *ngIf="campoInvalido('tecnologias')" class="text-danger">
       <small>Debe seleccionar al menos una tecnología.</small>
+    </div>
+  </div>
+
+  <!-- Autor y Cliente-->
+  <div class="form-group autor-cliente">
+    <div class="columnas-autor-cliente">
+      <label>Autor del Proyecto</label>
+      <input
+        formControlName="autor"
+        type="text"
+        class="form-control"
+        required
+      />
+      <div *ngIf="campoInvalido('autor')" class="text-danger">
+        <small>El Autor es obligatorio.</small>
+      </div>
+    </div>
+    <div class="columnas-autor-cliente">
+      <label>Dirección del Autor</label>
+      <input
+        formControlName="direccionAutor"
+        type="text"
+        class="form-control"
+        required
+      />
+      <div *ngIf="campoInvalido('direccionAutor')" class="text-danger">
+        <small>La dirección del Autor es obligatoria.</small>
+      </div>
+    </div>
+    <div class="columnas-autor-cliente">
+      <label>CIF/NIF del Autor</label>
+      <input
+        formControlName="cifAutor"
+        type="text"
+        class="form-control"
+        required
+      />
+      <div *ngIf="campoInvalido('cifAutor')" class="text-danger">
+        <small>El CIF/NIF del Autor es obligatorio.</small>
+      </div>
+    </div>
+
+    <div class="spacer" style="width: 50px"></div>
+
+    <div class="columnas-autor-cliente">
+      <label>Cliente del Proyecto</label>
+      <input
+        formControlName="cliente"
+        type="text"
+        class="form-control"
+        required
+      />
+      <div *ngIf="campoInvalido('cliente')" class="text-danger">
+        <small>El Cliente es obligatorio.</small>
+      </div>
+    </div>
+    <div class="columnas-autor-cliente">
+      <label>Dirección del Cliente</label>
+      <input
+        formControlName="direccionCliente"
+        type="text"
+        class="form-control"
+        required
+      />
+      <div *ngIf="campoInvalido('direccionAutor')" class="text-danger">
+        <small>La dirección del Cliente es obligatoria.</small>
+      </div>
+    </div>
+    <div class="columnas-autor-cliente">
+      <label>CIF/NIF del Cliente</label>
+      <input
+        formControlName="cifCliente"
+        type="text"
+        class="form-control"
+        required
+      />
+      <div *ngIf="campoInvalido('cifAutor')" class="text-danger">
+        <small>El NIF del Cliente es obligatorio.</small>
+      </div>
     </div>
   </div>
 
   <!-- Subir Imagen -->
   <div class="form-group">
     <label>Subir Imagen</label>
-    <input type="file" (change)="onFileSelected($event)" class="form-control" accept="image/*" />
+    <input
+      type="file"
+      (change)="onFileSelected($event)"
+      class="form-control"
+      accept="image/*"
+    />
     <div *ngIf="campoInvalido('foto')" class="text-danger">
       <small>Debe subir una imagen.</small>
     </div>
@@ -75,7 +175,11 @@
     <img [src]="imagenBase64" alt="Vista previa" class="img-preview" />
   </div>
 
-  <button type="submit" class="btn btn-success mt-3" [disabled]="proyectoForm.invalid">
+  <button
+    type="submit"
+    class="btn btn-success mt-3"
+    [disabled]="proyectoForm.invalid"
+  >
     Crear Proyecto
   </button>
 </form>
