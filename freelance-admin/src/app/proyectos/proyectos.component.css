@@ -50,6 +50,12 @@
 	justify-content: space-between;
 }
 
+
+.proyectos:hover {
+	cursor: pointer;
+	border-color: #5E81F4;
+}
+
 .titulos {
 	font-size: 1.5em;
 	font-weight: bold;
@@ -198,7 +204,7 @@ h3 {
 }
 
 
-.estado-sin-comenzar{
+.estado-sin-comenzar {
 	background-color: #F0F0F3;
 	color: #8181A5;
 	padding: 3px;
@@ -260,7 +266,7 @@ h3 {
 
 .botones-ventanaEliminar {
 	display: flex;
-flex-direction: row;
+	flex-direction: row;
 }
 
 .botones-ventanaEliminar button {
@@ -294,5 +300,57 @@ flex-direction: row;
 	position: fixed;
 	left: 0;
 	top: 0;
+
+}
+
+.ventana-detalles {
+	background-color: white;
+	border-radius: 12px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1000;
+	padding: 40px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.ventana-detalles button {
+	border: none;
+	margin-top: 20px;
+	padding: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	background-color: #F0F0F3;
+	color: #8181A5;
+	font-weight: bold;
+	font-size: 14px;
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+	justify-content: center;
+
+}
+
+.ventana-detalles p {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.columnas {
+	display: contents;
+
+	margin: 20px;
+}
+
+.columnas.dobles {
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 0;
 
 }

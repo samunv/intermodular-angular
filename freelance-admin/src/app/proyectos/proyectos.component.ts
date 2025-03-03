@@ -4,6 +4,7 @@ import { RouterModule, Router } from '@angular/router';
 import { ProyectosServicioService } from '../services/proyectos-servicio.service';
 import { TecnologiasService } from '../services/tecnologias.service';
 import { FormsModule, NgModel } from '@angular/forms';
+import { Proyecto } from '../Proyecto';
 
 @Component({
   selector: 'app-proyectos',
@@ -16,9 +17,12 @@ export class ProyectosComponent implements OnInit {
   proyectos: any[] = [];
   tecnologias: any;
   ventanaEliminar: Boolean = false;
+  ventanaDetalles: Boolean = false;
   overlay: Boolean = false;
   idProyectoSeleccionado: string = '';
   nombreProyectoSeleccionado: string = '';
+
+  proyecto: Proyecto | null = null;
 
   textoBuscado: string = '';
 
@@ -66,7 +70,6 @@ export class ProyectosComponent implements OnInit {
       this.cerrarVentanaEliminar();
     } catch (error) {
       console.error('Error al eliminar el proyecto:', error);
-
     }
   }
 
@@ -76,7 +79,19 @@ export class ProyectosComponent implements OnInit {
     );
   }
 
+  abrirVentanaDetalles(id: string) {
+    this.ventanaDetalles = true;
+    this.overlay = true;
+    this.obtenerDetalleProyecto(id);
+  }
 
+  cerrarVentanaDetalles() {
+    this.ventanaDetalles = false;
+    this.overlay = false;
+    this.proyecto = null;
+  }
 
-
+  async obtenerDetalleProyecto(id: string) {
+    this.proyecto = await this.servicioProyectos.getProyectoById(id);
+  }
 }

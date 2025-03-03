@@ -41,13 +41,17 @@
     </a>
   </div>
 
-  <div class="proyectos" *ngFor="let proyecto of proyectosFiltrados">
+  <div
+    class="proyectos"
+    *ngFor="let proyecto of proyectosFiltrados"
+    (click)="abrirVentanaDetalles(proyecto.id)"
+  >
     <div class="contenedor-izquierda">
       <img [src]="proyecto.foto" alt="" class="fotos-proyectos" />
 
       <div class="columna-info nombre-descripcion">
         <h3>{{ proyecto.nombre }}</h3>
-        <p class="descripcion">Descripción: {{ proyecto.descripcion }}</p>
+        <p class="descripcion">Autor: {{ proyecto.autor }}</p>
       </div>
 
       <div class="columna-info estado">
@@ -136,3 +140,42 @@
 </div>
 
 <div *ngIf="overlay" class="overlay"></div>
+
+<div class="ventana-detalles" *ngIf="ventanaDetalles && proyecto != null">
+  <h1>{{ proyecto.nombre }}</h1>
+
+  <div class="columnas">
+    <div>
+      <p><strong>Autor:</strong> {{ proyecto.autor }}</p>
+    </div>
+    <div class="spacer" style="width: 20px"></div>
+    <div>
+      <p><strong>Cliente:</strong> {{ proyecto.cliente }}</p>
+    </div>
+  </div>
+
+  <div class="columnas"><p><strong>Descripción:</strong> {{ proyecto.descripcion }}</p></div>
+
+  <div class="columnas">
+    <p><strong>Tecnologías</strong></p>
+    <div class="conjunto-tecnologias">
+      <span *ngFor="let tec of tecnologias">
+        <span
+          *ngIf="proyecto.tecnologias.includes(tec.nombre)"
+          class="contenedor-tecnologia-icono"
+        >
+          <img
+            [src]="tec.icono"
+            alt="{{ tec.nombre }}"
+            width="20"
+            height="20"
+            style="object-fit: contain"
+          />
+          <span>{{ tec.nombre }}</span>
+        </span>
+      </span>
+    </div>
+  </div>
+
+  <button (click)="cerrarVentanaDetalles()">Cerrar</button>
+</div>
