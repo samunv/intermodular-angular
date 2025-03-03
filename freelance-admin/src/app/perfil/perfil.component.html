@@ -1,8 +1,13 @@
 <div class="perfil-container">
-    <h2>Mi Perfil</h2>
-  
-    <!-- Aquí podrías mostrar la información del usuario autenticado -->
-  
+  <h2>Mi Perfil</h2>
+
+  <div *ngIf="usuario; else noUsuario">
+    <p><strong>Email:</strong> {{ usuario?.email }}</p>
     <button class="btn-logout" (click)="logout()">Cerrar Sesión</button>
   </div>
-  
+
+  <!-- Mensaje si no hay usuario autenticado -->
+  <ng-template #noUsuario>
+    <p class="text-danger">No hay usuario autenticado.</p>
+  </ng-template>
+</div>
