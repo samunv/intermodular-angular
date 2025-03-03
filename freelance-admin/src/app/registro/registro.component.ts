@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { RegistroService } from '../services/registro.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-registro',
-  imports: [FormsModule], // Agregar FormsModule
+  imports: [FormsModule, RouterLink], // Agregar FormsModule
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.css'],
 })
