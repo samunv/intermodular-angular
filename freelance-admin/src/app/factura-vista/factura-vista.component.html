@@ -68,13 +68,13 @@
       <button (click)="guardarTotalFinal(presupuestoFinal, codigoProyecto)" [disabled]="!btnGuardarActivo" [ngClass]="{ 'btn-activo': btnGuardarActivo, 'btn-inactivo': !btnGuardarActivo }">
         Guardar como Total Final
       </button>
-      <p style="margin: 0px">{{ presupuestoFinal }} €</p>
+      <p style="margin: 0px">{{ presupuestoFinal | currency : "EUR" }}</p>
     </div>
   </div>
 
   <div class="presupuesto presupuesto-total">
     <h2>Presupuesto Total Final:</h2>
-    <p style="margin: 0px">{{ presupuestoBBDD }} €</p>
+    <p style="margin: 0px">{{ presupuestoBBDD | currency : "EUR" }}</p>
   </div>
 </section>
 
