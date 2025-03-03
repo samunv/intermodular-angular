@@ -34,7 +34,11 @@ export class ProyectosCrearComponent implements OnInit {
     this.proyectoForm = this.fb.group({
       nombre: [
         '',
-        [Validators.required, Validators.minLength(3), Validators.maxLength(50)],
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50),
+        ],
       ],
       descripcion: ['', [Validators.required, Validators.maxLength(300)]],
       estado: ['', Validators.required],
