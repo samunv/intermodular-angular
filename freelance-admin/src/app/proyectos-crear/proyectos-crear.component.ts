@@ -20,7 +20,7 @@ import { ProyectosServicioService } from '../services/proyectos-servicio.service
 })
 export class ProyectosCrearComponent implements OnInit {
   proyectoForm: FormGroup;
-  estados = ['Finalizado', 'En curso...', 'Sin comenzar'];
+  estados = ['Finalizado', 'En Curso', 'Sin Comenzar'];
   tecnologias: any = [];
   imagenBase64: string | null = null;
   errorImagen: string = ''; // Para manejar errores de imagen
