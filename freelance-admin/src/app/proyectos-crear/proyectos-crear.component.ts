@@ -24,6 +24,7 @@ export class ProyectosCrearComponent implements OnInit {
   tecnologias: any = [];
   imagenBase64: string | null = null;
   errorImagen: string = ''; // Para manejar errores de imagen
+  presupuesto: number = 0;
 
   constructor(
     private fb: FormBuilder,
@@ -146,6 +147,7 @@ export class ProyectosCrearComponent implements OnInit {
           tecnologias: Array.isArray(this.proyectoForm.value.tecnologias)
             ? this.proyectoForm.value.tecnologias
             : [this.proyectoForm.value.tecnologias],
+          presupuesto: this.presupuesto,
         };
 
         const docRef = await this.proyectosService.createProyecto(proyecto);
