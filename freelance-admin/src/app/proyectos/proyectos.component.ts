@@ -5,6 +5,7 @@ import { ProyectosServicioService } from '../services/proyectos-servicio.service
 import { TecnologiasService } from '../services/tecnologias.service';
 import { FormsModule, NgModel } from '@angular/forms';
 import { Proyecto } from '../Proyecto';
+import { FacturaServicioService } from '../services/factura-servicio.service';
 
 @Component({
   selector: 'app-proyectos',
@@ -29,6 +30,7 @@ export class ProyectosComponent implements OnInit {
   constructor(
     private servicioProyectos: ProyectosServicioService,
     private servicioTecnologias: TecnologiasService,
+    private servicioFacturas: FacturaServicioService,
     private router: Router
   ) {}
 
@@ -66,12 +68,25 @@ export class ProyectosComponent implements OnInit {
 
   async eliminarProyecto(id: string) {
     try {
+      //Seleccionamos el proyecto por su id
+      const proyecto = await this.servicioProyectos.getProyectoById(id);
+
+      //Si no es null, llamamos a la función eliminar facturas pcon el codigo del proyecto.
+      //Esto lo hacemos para que al borrarse un proyecto, se borren también las facturas asociadas
+      if (proyecto) {
+        await this.eliminarFacturas(proyecto.codigo);
+      }
+
       await this.servicioProyectos.eliminarProyecto(id);
       this.proyectos = this.proyectos.filter((proyecto) => proyecto.id !== id);
       this.cerrarVentanaEliminar();
     } catch (error) {
       console.error('Error al eliminar el proyecto:', error);
     }
+  }
+
+  async eliminarFacturas(codigo: string) {
+    await this.servicioFacturas.eliminarFacturasPorCodigoProyecto(codigo);
   }
 
   get proyectosFiltrados() {
