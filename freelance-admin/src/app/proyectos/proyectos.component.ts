@@ -123,7 +123,11 @@ export class ProyectosComponent implements OnInit {
     return this.proyectosFiltrados.slice(inicio, fin); // Devolvemos solo los proyectos correspondientes a la página actual
   }
   
+  get totalPaginasArray(): number[] {
+    return Array.from({ length: this.totalPaginas }, (_, i) => i + 1); // Devuelve un array [1...totalPaginas] para iterar en los botones de paginación
+  }
   
+
   cambiarPagina(pagina: number) {
     if (pagina >= 1 && pagina <= this.totalPaginas) {
       this.paginaActual = pagina;
