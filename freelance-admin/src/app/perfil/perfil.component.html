@@ -2,7 +2,7 @@
   <h2>Mi Perfil</h2>
 
   <div *ngIf="usuario; else noUsuario">
-    <p><strong>Email:</strong> {{ usuario?.email }}</p>
+    <p><strong>Email:</strong> {{ usuario ? usuario.email : 'No disponible' }}</p>
     <button class="btn-logout" (click)="logout()">Cerrar Sesión</button>
   </div>
 

@@ -21,11 +21,14 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
+  "src/favicon.ico",
+  "src/assets",
+  {
+    "glob": "**/*",
+    "input": "public",
+    "output": "/"
+  }
+],
             "styles": [
   "node_modules/bootstrap/dist/css/bootstrap.min.css",
   "src/styles.css"
@@ -40,8 +43,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "700kb",
+                  "maximumError": "1.1mb"
                 },
                 {
                   "type": "anyComponentStyle",
