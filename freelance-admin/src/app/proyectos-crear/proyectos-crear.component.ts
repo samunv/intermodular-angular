@@ -5,7 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TecnologiasService } from '../services/tecnologias.service';
@@ -14,7 +14,7 @@ import { ProyectosServicioService } from '../services/proyectos-servicio.service
 @Component({
   selector: 'app-proyectos-crear',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule,RouterLink],
   templateUrl: './proyectos-crear.component.html',
   styleUrls: ['./proyectos-crear.component.css'],
 })

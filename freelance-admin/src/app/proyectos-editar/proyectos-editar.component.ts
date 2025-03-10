@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
@@ -13,7 +13,7 @@ import { TecnologiasService } from '../services/tecnologias.service';
 @Component({
   selector: 'app-proyectos-editar',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,RouterLink],
   templateUrl: './proyectos-editar.component.html',
   styleUrls: ['./proyectos-editar.component.css'],
 })
