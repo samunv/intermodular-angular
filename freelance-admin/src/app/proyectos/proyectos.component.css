@@ -392,4 +392,20 @@ h3 {
 	pointer-events: none;
 	background-color: #f8f9fa;
   }
+  .mensaje-no-encontrado {
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	color: #ff3b3b;
+	background-color: #ffe5e5;
+	padding: 10px;
+	border-radius: 5px;
+	margin-top: 10px;
+	margin-left: 20px;
+	margin-right: 20px;
+  }
+ .mensaje-no-encontrado p{
+	margin: 0;
+  }
   
+ 

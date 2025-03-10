@@ -26,6 +26,7 @@ export class ProyectosComponent implements OnInit {
   textoBuscado: string = '';
   proyectosPorPagina = 3;
   paginaActual = 1;
+  sinProyectosEncontrados: boolean = false;
 
 
   constructor(
@@ -91,10 +92,15 @@ export class ProyectosComponent implements OnInit {
   }
 
   get proyectosFiltrados() {
-    return this.proyectos.filter((proyecto) =>
+    const filtrados = this.proyectos.filter((proyecto) =>
       proyecto.nombre.toLowerCase().includes(this.textoBuscado.toLowerCase())
     );
+    
+    this.sinProyectosEncontrados = filtrados.length === 0; 
+  
+    return filtrados;
   }
+  
 
   abrirVentanaDetalles(id: string) {
     this.cerrarVentanaEliminar();
