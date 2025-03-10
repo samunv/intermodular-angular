@@ -70,9 +70,9 @@ export class FacturaVistaComponent implements OnInit {
         total: Number(factura.total) || 0,
       }));
       this.facturasFiltradas = [...this.facturas]; // Solo para mostrar
-      this.calcularTotalFacturas(); // ✅ Calcula el total después de cargar todo
+      this.calcularTotalFacturas(); //Calcula el total después de cargar todo
     } catch (error) {
-      console.error('❌ Error al obtener las facturas:', error);
+      console.error('Error al obtener las facturas:', error);
     }
   }
 

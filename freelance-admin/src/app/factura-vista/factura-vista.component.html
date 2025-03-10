@@ -33,32 +33,32 @@
     />
   </div>
 
-  <!-- Contenedor de facturas -->
-  <div class="facturas-listado">
-    <div *ngIf="facturasFiltradas.length === 0" class="mensaje-vacio">
-      No hay facturas disponibles.
-    </div>
+  <div
+  class="factura"
+  *ngFor="let factura of facturasFiltradas"
+  (click)="abrirVentanaInfo(factura.numeroFactura)"
+>
+  <!-- Contenedor para el círculo y la info de la factura -->
+  <div class="factura-info">
+    <!-- Círculo de color -->
+    <div class="tipo-indicador" [ngClass]="{'compra': factura.tipo?.toLowerCase() === 'compra', 'venta': factura.tipo?.toLowerCase() === 'venta'}"></div>
 
-    <div
-      class="factura"
-      *ngFor="let factura of facturasFiltradas"
-      (click)="abrirVentanaInfo(factura.numeroFactura)"
-    >
-      <h3>Número: {{ factura.numeroFactura }}</h3>
-      <p><strong>Cliente:</strong> {{ factura.cliente }}</p>
-
-      <p><strong>Autor/Emisor: </strong>{{ factura.nombre }}</p>
-      <p><strong>Fecha:</strong> {{ factura.fecha }}</p>
-
-      <p>
-        <strong>Total:</strong>
-        {{
-          factura.total || factura.baseImponible * (1 + factura.iva / 100)
-            | currency : "EUR"
-        }}
-      </p>
-    </div>
+    <h3>Número: {{ factura.numeroFactura }}</h3>
   </div>
+
+  <p><strong>Cliente:</strong> {{ factura.cliente }}</p>
+  <p><strong>Autor/Emisor: </strong>{{ factura.nombre }}</p>
+  <p><strong>Fecha:</strong> {{ factura.fecha }}</p>
+  <p>
+    <strong>Total:</strong>
+    {{
+      factura.total || factura.baseImponible * (1 + factura.iva / 100)
+        | currency : "EUR"
+    }}
+  </p>
+</div>
+
+
 </section>
 
 <section class="presupuestos" *ngIf="facturasFiltradas.length !== 0">

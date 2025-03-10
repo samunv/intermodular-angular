@@ -217,3 +217,25 @@ background-color: #3c5fd1;
   top: 0;
 
 }
+.factura-info {
+  display: flex;
+  align-items: center; 
+}
+
+.tipo-indicador {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px; 
+  flex-shrink: 0; 
+}
+
+.tipo-indicador.compra {
+  background-color: #87CEFA;
+}
+
+.tipo-indicador.venta {
+  background-color: #90EE90;
+}
+
