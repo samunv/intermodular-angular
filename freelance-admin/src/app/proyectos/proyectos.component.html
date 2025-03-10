@@ -130,10 +130,10 @@
   <h2>
     ¿Seguro que quieres eliminar el proyecto: {{ nombreProyectoSeleccionado }}?
   </h2>
-  <p>Ten cuidado. No podrás revertir esta acción.</p>
+  <p style="text-align: center;">Se borrarán todas las facturas asociadas a este proyecto. Si estás seguro, haz click en eliminar.</p>
   <div class="botones-ventanaEliminar">
     <button (click)="eliminarProyecto(idProyectoSeleccionado)">
-      Eliminar este proyecto
+      Eliminar este proyecto y sus facturas
     </button>
     <button (click)="cerrarVentanaEliminar()">Cancelar</button>
   </div>
