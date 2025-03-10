@@ -53,25 +53,26 @@
   <!-- Tecnologías -->
   <div class="form-group">
     <label>Tecnologías</label>
-    <select
-      formControlName="tecnologias"
-      class="form-control tecnologias"
-      multiple
-    >
-      <option
-        *ngFor="let tecnologia of tecnologias"
-        [value]="tecnologia.nombre"
-      >
-        {{ tecnologia.nombre }}
-      </option>
-    </select>
-    <small class="help-text"
-      >Presiona Ctrl (Windows) para seleccionar múltiples tecnologías.</small
-    >
+    <div class="tecnologias">
+      <div *ngFor="let tecnologia of tecnologias" class="form-check">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          [value]="tecnologia.nombre"
+          (change)="onCheckboxChange($event)"
+          [checked]="proyectoForm.get('tecnologias')?.value?.includes(tecnologia.nombre)"
+          id="tecnologia{{ tecnologia.nombre }}"
+        />
+        <label class="form-check-label" [for]="'tecnologia' + tecnologia.nombre">
+          {{ tecnologia.nombre }}
+        </label>
+      </div>
+    </div>
     <div *ngIf="campoInvalido('tecnologias')" class="text-danger">
       <small>Debe seleccionar al menos una tecnología.</small>
     </div>
   </div>
+  
 
   <!-- Autor y Cliente-->
   <div class="form-group autor-cliente">

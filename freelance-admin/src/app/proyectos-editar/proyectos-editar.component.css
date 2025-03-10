@@ -57,8 +57,6 @@ textarea {
   resize: none;
   height: 80px;
 }
-
-/* ✅ Alineación correcta de los botones sin superposición */
 .columna-info.botones {
   display: flex;
   justify-content: flex-end;

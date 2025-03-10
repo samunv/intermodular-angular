@@ -38,12 +38,12 @@ export class ProyectosServicioService {
       );
       return docRef;
     } catch (error) {
-      console.error('❌ Error al crear el proyecto:', error);
+      console.error('Error al crear el proyecto:', error);
       throw error;
     }
   }
 
-  /** 🔵 Obtener todos los proyectos desde Firestore */
+  /** Obtener todos los proyectos desde Firestore */
   async getProyectos() {
     return (
       await getDocs(query(collection(this.firestore, 'proyectos')))

@@ -135,6 +135,29 @@ export class ProyectosCrearComponent implements OnInit {
     }
   }
 
+  onCheckboxChange(event: any): void {
+    const control = this.proyectoForm.get('tecnologias');
+    if (!control) {
+      return;
+    }
+  
+    // Obtenemos el array actual de tecnologías seleccionadas
+    let selectedTecnologias = control.value || [];
+  
+    if (event.target.checked) {
+      // Añadimos el valor si se selecciona
+      selectedTecnologias.push(event.target.value);
+    } else {
+      // Eliminamos el valor si se deselecciona
+      selectedTecnologias = selectedTecnologias.filter(
+        (t: string) => t !== event.target.value
+      );
+    }
+  
+    // Actualizamos el formControl con el nuevo array
+    control.setValue(selectedTecnologias);
+  }
+  
   /**
    * Crea un nuevo proyecto validando el formulario antes de enviarlo.
    */
