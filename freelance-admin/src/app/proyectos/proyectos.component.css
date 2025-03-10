@@ -355,3 +355,41 @@ h3 {
 	margin: 0;
 
 }
+
+.paginacion {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 10px;
+	margin-bottom: 20px;
+  }
+  
+  .pagination {
+	margin-bottom: 20px;
+  }
+  
+  .page-item {
+	margin: 0 3px;
+  }
+  
+  .page-item a.page-link {
+	color: #5E81F4;
+	font-weight: bold;
+	border-radius: 6px;
+	border: 1px solid #dee2e6;
+	padding: 6px 12px;
+	text-decoration: none;
+  }
+  
+  .page-item.active a.page-link {
+	background-color: #5E81F4;
+	color: white;
+	border-color: #5E81F4;
+  }
+  
+  .page-item.disabled a.page-link {
+	color: #adb5bd;
+	pointer-events: none;
+	background-color: #f8f9fa;
+  }
+  

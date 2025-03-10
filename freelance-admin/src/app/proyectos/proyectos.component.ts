@@ -22,10 +22,11 @@ export class ProyectosComponent implements OnInit {
   overlay: Boolean = false;
   idProyectoSeleccionado: string = '';
   nombreProyectoSeleccionado: string = '';
-
   proyecto: Proyecto | null = null;
-
   textoBuscado: string = '';
+  proyectosPorPagina = 3;
+  paginaActual = 1;
+
 
   constructor(
     private servicioProyectos: ProyectosServicioService,
@@ -111,4 +112,27 @@ export class ProyectosComponent implements OnInit {
   async obtenerDetalleProyecto(id: string) {
     this.proyecto = await this.servicioProyectos.getProyectoById(id);
   }
+
+  get totalPaginas(): number {
+    return Math.ceil(this.proyectosFiltrados.length / this.proyectosPorPagina); //Math.ceil redondea hacia arriba
+  }
+  
+  get proyectosPaginados() {
+    const inicio = (this.paginaActual - 1) * this.proyectosPorPagina; // Calculamos el índice de inicio según la página actual
+    const fin = inicio + this.proyectosPorPagina; // Calculamos el índice de fin sumando los proyectos por página
+    return this.proyectosFiltrados.slice(inicio, fin); // Devolvemos solo los proyectos correspondientes a la página actual
+  }
+  
+  get totalPaginasArray(): number[] {
+    return Array.from({ length: this.totalPaginas }, (_, i) => i + 1); // Devuelve un array [1...totalPaginas] para iterar en los botones de paginación
+  }
+  
+
+  cambiarPagina(pagina: number) {
+    if (pagina >= 1 && pagina <= this.totalPaginas) {
+      this.paginaActual = pagina;
+    }
+  }
+  
+
 }
