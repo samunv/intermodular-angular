@@ -84,8 +84,7 @@ export class FacturaVistaComponent implements OnInit {
     const filtro = (event.target as HTMLInputElement).value.toLowerCase();
     this.facturasFiltradas = this.facturas.filter(
       (factura) =>
-        factura.numeroFactura.toLowerCase().includes(filtro) ||
-        factura.cliente.toLowerCase().includes(filtro)
+        factura.numeroFactura.toLowerCase().includes(filtro) 
     );
     this.calcularTotalFacturas();
   }
@@ -97,7 +96,7 @@ export class FacturaVistaComponent implements OnInit {
         this.nombreproyecto = proyecto.nombre;
         this.presupuestoBBDD = proyecto.presupuesto;
       } else {
-        console.warn('⚠️ Proyecto no encontrado');
+        console.warn(' Proyecto no encontrado');
       }
     });
   }
