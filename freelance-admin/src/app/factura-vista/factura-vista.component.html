@@ -12,7 +12,8 @@
 </a>
 
 <section class="factura-content">
-  <!-- Barra de búsqueda -->
+<div class="contenedor-filtro">
+  <!-- Buscador -->
   <div class="contenedor-buscador">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -28,19 +29,29 @@
     <input
       type="text"
       id="buscador"
-      placeholder="Buscar factura por Número o Cliente"
+      placeholder="Buscar factura por Número"
       (input)="buscarFactura($event)"
     />
   </div>
+
+  <div class="contenedor-leyenda">
+    <div class="leyenda-item">
+      <div class="leyenda-color compra"></div>
+      <span>Compra</span>
+    </div>
+    <div class="leyenda-item">
+      <div class="leyenda-color venta"></div>
+      <span>Venta</span>
+    </div>
+  </div>
+</div>
 
   <div
   class="factura"
   *ngFor="let factura of facturasFiltradas"
   (click)="abrirVentanaInfo(factura.numeroFactura)"
 >
-  <!-- Contenedor para el círculo y la info de la factura -->
   <div class="factura-info">
-    <!-- Círculo de color -->
     <div class="tipo-indicador" [ngClass]="{'compra': factura.tipo?.toLowerCase() === 'compra', 'venta': factura.tipo?.toLowerCase() === 'venta'}"></div>
 
     <h3>Número: {{ factura.numeroFactura }}</h3>

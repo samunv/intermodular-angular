@@ -35,7 +35,7 @@
 }
 
 
-
+/*
 .contenedor-buscador {
   background-color: #F0F0F3;
   padding: 15px;
@@ -48,7 +48,7 @@
   flex-direction: row;
   align-items: center;
 }
-
+*/
 #buscador {
   margin-left: 10px;
   background-color: transparent;
@@ -185,10 +185,6 @@ background-color: #3c5fd1;
   margin-top: 20px;
 
 }
-
-
-
-
 .columna-doble {
   display: flex;
   flex-direction: row;
@@ -236,6 +232,100 @@ background-color: #3c5fd1;
 }
 
 .tipo-indicador.venta {
+  background-color: #90EE90;
+}
+.contenedor-leyenda {
+  display: flex;
+  gap: 20px;
+  background: white;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.leyenda-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+}
+
+.leyenda-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.leyenda-color.compra {
+  background-color: #87CEFA;
+}
+
+.leyenda-color.venta {
+  background-color: #90EE90;
+}
+.contenedor-filtro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  width: 100%;
+  margin-bottom: 20px;
+
+}
+
+.contenedor-buscador-leyenda {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  width: 100%;
+  margin-bottom: 20px;
+
+}
+
+.contenedor-buscador {
+  background-color: #F0F0F3;
+  padding: 15px;
+  outline: none;
+  width: 100%;
+  max-width: 350px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.contenedor-leyenda {
+  display: flex;
+  gap: 15px;
+  background: white;
+  padding: 10px 15px;
+  border-radius: 6px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  align-items: center;
+}
+
+.leyenda-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+}
+
+.leyenda-color {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  display: inline-block;
+}
+.leyenda-color.compra {
+  background-color: #87CEFA;
+}
+
+.leyenda-color.venta {
   background-color: #90EE90;
 }
 
