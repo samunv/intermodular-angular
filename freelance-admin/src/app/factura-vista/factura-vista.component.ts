@@ -39,6 +39,8 @@ export class FacturaVistaComponent implements OnInit {
   ventanaInfo: boolean = false;
   factura: Factura | null = null;
   btnGuardarActivo: boolean = true;
+  sinResultados: boolean = false; 
+
 
   constructor(
     private facturaServicio: FacturaServicioService,
@@ -76,18 +78,19 @@ export class FacturaVistaComponent implements OnInit {
     }
   }
 
-  /**
-   * Filtra las facturas según la búsqueda del usuario
-   * @param event Evento de entrada del usuario
-   */
-  buscarFactura(event: Event) {
-    const filtro = (event.target as HTMLInputElement).value.toLowerCase();
-    this.facturasFiltradas = this.facturas.filter(
-      (factura) =>
-        factura.numeroFactura.toLowerCase().includes(filtro) 
-    );
-    this.calcularTotalFacturas();
-  }
+
+buscarFactura(event: Event) {
+  const filtro = (event.target as HTMLInputElement).value.toLowerCase();
+  this.facturasFiltradas = this.facturas.filter(
+    (factura) =>
+      factura.numeroFactura.toLowerCase().includes(filtro) 
+  );
+
+  this.sinResultados = this.facturasFiltradas.length === 0;
+
+  this.calcularTotalFacturas();
+}
+
 
   obtenerDatos(codigo: string) {
     this.proyectosServicio.getProyectoByCodigo(codigo).subscribe((proyectos) => {
