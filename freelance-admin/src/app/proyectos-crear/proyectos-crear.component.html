@@ -64,25 +64,26 @@
   <div class="form-group">
     <label>Tecnologías</label>
     <div class="tecnologias">
-      <div *ngFor="let tecnologia of tecnologias" class="form-check">
-        <input
-          type="checkbox"
-          class="form-check-input"
-          [value]="tecnologia.nombre"
-          (change)="onCheckboxChange($event)"
-          [checked]="proyectoForm.get('tecnologias')?.value?.includes(tecnologia.nombre)"
-          id="tecnologia{{ tecnologia.nombre }}"
+      <div
+        *ngFor="let tecnologia of tecnologias"
+        class="technology-item"
+        (click)="cambiarSeleccion(tecnologia.nombre)"
+        [class.selected]="isSelected(tecnologia.nombre)"
+      >
+        <img
+          [src]="tecnologia.icono"
+          alt=""
+          style="object-fit: contain"
+          width="20"
+          height="20"
         />
-        <label class="form-check-label" [for]="'tecnologia' + tecnologia.nombre">
-          {{ tecnologia.nombre }}
-        </label>
+        {{ tecnologia.nombre }}
       </div>
     </div>
     <div *ngIf="campoInvalido('tecnologias')" class="text-danger">
       <small>Debe seleccionar al menos una tecnología.</small>
     </div>
   </div>
-  
 
   <!-- Autor y Cliente-->
   <div class="form-group autor-cliente">

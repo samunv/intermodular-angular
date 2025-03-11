@@ -14,7 +14,7 @@ import { ProyectosServicioService } from '../services/proyectos-servicio.service
 @Component({
   selector: 'app-proyectos-crear',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule,RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterLink],
   templateUrl: './proyectos-crear.component.html',
   styleUrls: ['./proyectos-crear.component.css'],
 })
@@ -44,7 +44,7 @@ export class ProyectosCrearComponent implements OnInit {
       descripcion: ['', [Validators.required, Validators.maxLength(300)]],
       estado: ['', Validators.required],
       tecnologias: [[], Validators.required],
-      foto: ['', Validators.required], // La imagen ahora es obligatoria
+      foto: ['', Validators.required],
       autor: [
         '',
         [
@@ -135,29 +135,33 @@ export class ProyectosCrearComponent implements OnInit {
     }
   }
 
-  onCheckboxChange(event: any): void {
+  /**
+   * Alterna la selección de una tecnología cuando se hace click.
+   */
+  cambiarSeleccion(tecnologia: string): void {
     const control = this.proyectoForm.get('tecnologias');
-    if (!control) {
-      return;
-    }
-  
-    // Obtenemos el array actual de tecnologías seleccionadas
-    let selectedTecnologias = control.value || [];
-  
-    if (event.target.checked) {
-      // Añadimos el valor si se selecciona
-      selectedTecnologias.push(event.target.value);
+    const tecnologiasSeleccionadas: string[] = control?.value || [];
+
+    const index = tecnologiasSeleccionadas.indexOf(tecnologia);
+    if (index > -1) {
+      // Remueve la tecnología si ya estaba seleccionada
+      tecnologiasSeleccionadas.splice(index, 1);
     } else {
-      // Eliminamos el valor si se deselecciona
-      selectedTecnologias = selectedTecnologias.filter(
-        (t: string) => t !== event.target.value
-      );
+      // La agrega si no estaba seleccionada
+      tecnologiasSeleccionadas.push(tecnologia);
     }
-  
-    // Actualizamos el formControl con el nuevo array
-    control.setValue(selectedTecnologias);
+
+    control?.setValue(tecnologiasSeleccionadas);
+    control?.markAsTouched();
   }
-  
+
+  /**
+   * Verifica si una tecnología está seleccionada.
+   */
+  isSelected(tecnologia: string): boolean {
+    return this.proyectoForm.get('tecnologias')?.value?.includes(tecnologia);
+  }
+
   /**
    * Crea un nuevo proyecto validando el formulario antes de enviarlo.
    */
